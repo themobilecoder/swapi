@@ -1,13 +1,11 @@
 package com.rafaelds.swapi.ui.people
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelds.swapi.R
+import com.rafaelds.swapi.databinding.ListItemPeopleBinding
 
 class PeopleListAdapter : ListAdapter<People, PeopleListAdapter.PeopleListViewHolder>(ASYNC_DIFF) {
 
@@ -33,20 +31,18 @@ class PeopleListAdapter : ListAdapter<People, PeopleListAdapter.PeopleListViewHo
         }
     }
 
-    class PeopleListViewHolder private constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class PeopleListViewHolder private constructor(private val binding: ListItemPeopleBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun create(parent: ViewGroup): PeopleListViewHolder {
-                val itemView =
-                    LayoutInflater.from(parent.context)
-                        .inflate(R.layout.list_item_people, parent, false)
-                return PeopleListViewHolder(itemView)
+                val binding = ListItemPeopleBinding.inflate(LayoutInflater.from(parent.context))
+                return PeopleListViewHolder(binding)
             }
         }
 
         fun setData(people: People) {
-            itemView.findViewById<TextView>(R.id.list_item_people_name).text = people.name
+            binding.itemTitle.text = people.name
         }
 
     }

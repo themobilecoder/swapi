@@ -7,7 +7,7 @@
     tools:context=".ui.people.PeopleListFragment">
 
     <LinearLayout
-        android:id="@+id/fragment_people_list_error"
+        android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -35,7 +35,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/fragment_people_list_loading"
+        android:id="@+id/loadingSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -46,12 +46,12 @@
         tools:visibility="visible" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/fragment_people_list_swipe_to_refresh"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_people_list_recycler_view"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
