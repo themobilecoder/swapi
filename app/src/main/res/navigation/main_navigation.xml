@@ -9,5 +9,54 @@
         android:id="@+id/main_dest"
         android:name="com.rafaelds.swapi.ui.main.MainFragment"
         android:label="@string/home_title"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_main_dest_to_peopleListFragment"
+            app:destination="@id/people_list_dest" />
+        <action
+            android:id="@+id/action_main_dest_to_planetListFragment"
+            app:destination="@id/planet_list_destination" />
+        <action
+            android:id="@+id/action_main_dest_to_film_list_dest"
+            app:destination="@id/film_list_dest" />
+        <action
+            android:id="@+id/action_main_dest_to_specie_list_dest"
+            app:destination="@id/specie_list_dest" />
+        <action
+            android:id="@+id/action_main_dest_to_vehicle_list_dest"
+            app:destination="@id/vehicle_list_dest" />
+        <action
+            android:id="@+id/action_main_dest_to_starship_list_dest"
+            app:destination="@id/starship_list_dest" />
+    </fragment>
+    <fragment
+        android:id="@+id/people_list_dest"
+        android:name="com.rafaelds.swapi.ui.people.PeopleListFragment"
+        android:label="@string/people"
+        tools:layout="@layout/fragment_people_list" />
+    <fragment
+        android:id="@+id/planet_list_destination"
+        android:name="com.rafaelds.swapi.ui.planets.PlanetListFragment"
+        android:label="@string/planets"
+        tools:layout="@layout/fragment_planet_list" />
+    <fragment
+        android:id="@+id/film_list_dest"
+        android:name="com.rafaelds.swapi.ui.films.FilmListFragment"
+        android:label="@string/films"
+        tools:layout="@layout/fragment_film_list" />
+    <fragment
+        android:id="@+id/specie_list_dest"
+        android:name="com.rafaelds.swapi.ui.species.SpecieListFragment"
+        android:label="@string/species"
+        tools:layout="@layout/fragment_specie_list" />
+    <fragment
+        android:id="@+id/vehicle_list_dest"
+        android:name="com.rafaelds.swapi.ui.vehicles.VehicleListFragment"
+        android:label="@string/vehicles"
+        tools:layout="@layout/fragment_vehicle_list" />
+    <fragment
+        android:id="@+id/starship_list_dest"
+        android:name="com.rafaelds.swapi.ui.starships.StarshipListFragment"
+        android:label="@string/starships"
+        tools:layout="@layout/fragment_starship_list" />
 </navigation>

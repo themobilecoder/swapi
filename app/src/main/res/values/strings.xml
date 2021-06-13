@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SW Client</string>
     <string name="home_title">SW Home</string>
+    <string name="people">People</string>
+    <string name="planets">Planets</string>
+    <string name="films">Films</string>
+    <string name="species">Species</string>
+    <string name="vehicles">Vehicles</string>
+    <string name="starships">Starships</string>
 </resources>

@@ -17,6 +17,7 @@
     <style name="Theme.Swapi.Toolbar">
         <item name="android:background">?colorPrimary</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
 </resources>

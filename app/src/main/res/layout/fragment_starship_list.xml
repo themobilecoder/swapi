@@ -3,15 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    tools:context=".ui.starships.StarshipListFragment">
 
-    <GridView
-        android:id="@+id/grid_view_categories"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
         android:gravity="center"
-        android:horizontalSpacing="6dp"
-        android:verticalSpacing="6dp" />
+        android:text="@string/starships" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
