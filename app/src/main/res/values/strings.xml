@@ -7,4 +7,6 @@
     <string name="species">Species</string>
     <string name="vehicles">Vehicles</string>
     <string name="starships">Starships</string>
+    <string name="failed_to_load">Failed to load</string>
+    <string name="try_again_and_refresh_screen">Try again and refresh screen</string>
 </resources>
