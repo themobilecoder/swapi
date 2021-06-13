@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/main_dest"
-        android:name="com.rafaelds.swapi.ui.main.MainFragment"
+        android:name="com.rafaelds.swapi.ui.main.CategoryFragment"
         android:label="@string/home_title"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/fragment_category" >
         <action
             android:id="@+id/action_main_dest_to_peopleListFragment"
             app:destination="@id/people_list_dest" />

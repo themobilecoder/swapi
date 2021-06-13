@@ -11,13 +11,13 @@ import com.rafaelds.swapi.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class CategoryFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_category, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,27 +32,27 @@ class MainFragment : Fragment() {
         requireContext(), arrayOf(
             Category(resources.getString(R.string.people)) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainDestToPeopleListFragment()
+                    CategoryFragmentDirections.actionMainDestToPeopleListFragment()
                 )
             },
             Category(resources.getString(R.string.planets)) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainDestToPlanetListFragment()
+                    CategoryFragmentDirections.actionMainDestToPlanetListFragment()
                 )
             },
             Category(resources.getString(R.string.films)) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainDestToFilmListDest()
+                    CategoryFragmentDirections.actionMainDestToFilmListDest()
                 )
             },
             Category(resources.getString(R.string.species)) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainDestToSpecieListDest()
+                    CategoryFragmentDirections.actionMainDestToSpecieListDest()
                 )
             },
             Category(resources.getString(R.string.starships)) {
                 findNavController().navigate(
-                    MainFragmentDirections.actionMainDestToStarshipListDest()
+                    CategoryFragmentDirections.actionMainDestToStarshipListDest()
                 )
             },
         )
