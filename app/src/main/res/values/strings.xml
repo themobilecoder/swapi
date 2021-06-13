@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SW Client</string>
+    <string name="home_title">SW Home</string>
 </resources>
