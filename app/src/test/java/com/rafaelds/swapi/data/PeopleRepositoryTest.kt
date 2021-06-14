@@ -24,28 +24,12 @@ class PeopleRepositoryTest : CoroutineTest() {
     fun `should return people list data state`() {
         runBlocking {
             val expectedResult = DataState.success(listOf(People(1, "Name")))
-            whenever(peopleRemoteService.getPeopleList()).thenReturn(expectedResult)
+            whenever(peopleRemoteService.fetchData()).thenReturn(expectedResult)
 
             val actualResult = peopleRepository.getPeopleList()
 
             assertEquals(expectedResult, actualResult)
-            verify(peopleRemoteService).getPeopleList()
+            verify(peopleRemoteService).fetchData()
         }
-    }
-
-    @Test
-    fun `regex stuff`() {
-        val url = "https://swapi.dev/api/people/421/"
-        val regexPattern = """(?:people/)(\d+)""".toRegex()
-        val matchResult = regexPattern.find(url)
-        assertEquals("421", matchResult!!.destructured.component1())
-    }
-
-    @Test
-    fun `regex stuff2`() {
-        val url = "https://swapi.dev/api/people/421?querystuff"
-        val regexPattern = """(?:people/)(\d+)""".toRegex()
-        val matchResult = regexPattern.find(url)
-        assertEquals("421", matchResult!!.destructured.component1())
     }
 }

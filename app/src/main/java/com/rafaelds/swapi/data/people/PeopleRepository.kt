@@ -8,6 +8,6 @@ import javax.inject.Singleton
 @Singleton
 class PeopleRepository @Inject constructor(private val peopleRemoteService: PeopleRemoteService) {
     suspend fun getPeopleList(): DataState<List<People>> {
-        return peopleRemoteService.getPeopleList()
+        return peopleRemoteService.fetchData()
     }
 }
