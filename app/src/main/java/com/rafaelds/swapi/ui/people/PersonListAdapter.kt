@@ -2,19 +2,22 @@ package com.rafaelds.swapi.ui.people
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.databinding.ListItemPeopleBinding
 
-class PersonListAdapter : ListAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
+class PersonListAdapter : PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonListViewHolder {
         return PersonListViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: PersonListViewHolder, position: Int) {
-        holder.setData(getItem(position))
+        val person = getItem(position)
+        person?.let {
+            holder.setData(person)
+        }
     }
 
     companion object {

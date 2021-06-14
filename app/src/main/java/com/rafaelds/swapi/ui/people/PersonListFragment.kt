@@ -8,14 +8,16 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelds.swapi.data.ViewState
 import com.rafaelds.swapi.databinding.FragmentPersonListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
 class PersonListFragment : Fragment() {
 
@@ -50,35 +52,24 @@ class PersonListFragment : Fragment() {
         setupAdapter(recyclerView)
 
         refreshLayout.setOnRefreshListener {
-            viewModel.fetchPeopleList()
+            refreshLayout.isRefreshing = false
+            personListAdapter.refresh()
         }
-
-        viewModel.screenState.observe(viewLifecycleOwner) { state ->
-            when (state.state) {
-                ViewState.State.SUCCESS -> {
-                    recyclerView.visibility = VISIBLE
-                    errorView.visibility = GONE
-                    loadingSpinner.visibility = GONE
-                    refreshLayout.isRefreshing = false
-                    personListAdapter.submitList(state.data)
-                }
-                ViewState.State.LOADING -> {
-                    recyclerView.visibility = GONE
-                    loadingSpinner.visibility = VISIBLE
-                }
-                ViewState.State.ERROR -> {
-                    recyclerView.visibility = GONE
+        personListAdapter.addLoadStateListener {
+            if (it.refresh is LoadState.Loading) {
+                loadingSpinner.visibility = VISIBLE
+            } else {
+                loadingSpinner.visibility = GONE
+                if (it.refresh is LoadState.Error) {
                     errorView.visibility = VISIBLE
-                    loadingSpinner.visibility = GONE
-                    refreshLayout.isRefreshing = false
-                }
-                ViewState.State.IDLE -> {
-
+                } else {
+                    errorView.visibility = GONE
                 }
             }
         }
-
-        viewModel.fetchPeopleList()
+        viewModel.fetchPeopleList().observe(viewLifecycleOwner) {
+            personListAdapter.submitData(lifecycle, it)
+        }
     }
 
     private fun setupAdapter(recyclerView: RecyclerView) {
