@@ -11,5 +11,8 @@ data class DataState<T>(val state: State, val data: T?) {
         fun <T> error(): DataState<T> {
             return DataState(State.ERROR, null)
         }
+        fun <T> idle(): DataState<T> {
+            return DataState(State.IDLE, null)
+        }
     }
 }

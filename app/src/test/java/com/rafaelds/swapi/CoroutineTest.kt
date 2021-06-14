@@ -11,7 +11,7 @@ import org.junit.Rule
 
 @ExperimentalCoroutinesApi
 @ObsoleteCoroutinesApi
-open class ViewModelTest {
+open class CoroutineTest {
 
     @Rule
     @JvmField

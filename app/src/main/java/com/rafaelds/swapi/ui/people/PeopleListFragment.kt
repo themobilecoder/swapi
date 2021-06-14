@@ -72,6 +72,9 @@ class PeopleListFragment : Fragment() {
                     loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
                 }
+                State.IDLE -> {
+
+                }
             }
         }
 
