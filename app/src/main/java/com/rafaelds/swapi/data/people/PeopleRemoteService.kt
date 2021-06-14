@@ -1,6 +1,5 @@
 package com.rafaelds.swapi.data.people
 
-import com.android.volley.RequestQueue
 import com.rafaelds.swapi.data.DataState
 import com.rafaelds.swapi.data.NetworkConfig
 import com.rafaelds.swapi.data.NetworkRequestHelper
@@ -9,7 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PeopleRemoteService @Inject constructor(private val networkConfig: NetworkConfig, private val requestQueue: RequestQueue) {
+class PeopleRemoteService @Inject constructor(
+    private val networkConfig: NetworkConfig,
+    private val networkRequestHelper: NetworkRequestHelper
+) {
 
     companion object {
         private const val PEOPLE_SUB_URI = "people/"
@@ -17,9 +19,9 @@ class PeopleRemoteService @Inject constructor(private val networkConfig: Network
     }
 
     suspend fun getPeopleList(): DataState<List<People>> {
-        val response = NetworkRequestHelper.request<PeopleListDTO>(
+        val response = networkRequestHelper.request(
             "${networkConfig.baseUri}$PEOPLE_SUB_URI",
-            requestQueue
+            PeopleListDTO.serializer()
         )
         return when (response) {
             is NetworkRequestHelper.NetworkResponse.Success -> {
