@@ -3,8 +3,8 @@ package com.rafaelds.swapi.data.people
 import com.nhaarman.mockitokotlin2.*
 import com.rafaelds.swapi.CoroutineTest
 import com.rafaelds.swapi.data.DataState
-import com.rafaelds.swapi.data.NetworkConfig
-import com.rafaelds.swapi.data.NetworkRequestHelper
+import com.rafaelds.swapi.data.network.NetworkConfig
+import com.rafaelds.swapi.data.network.NetworkRequestHelper
 import com.rafaelds.swapi.ui.people.Person
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi

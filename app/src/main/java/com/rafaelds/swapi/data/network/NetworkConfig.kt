@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.network
 
 interface NetworkConfig {
     val baseUri: String

@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.network
 
 import com.android.volley.Request
 import com.android.volley.RequestQueue

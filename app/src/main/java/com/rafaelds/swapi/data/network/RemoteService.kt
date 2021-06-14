@@ -1,5 +1,6 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.network
 
+import com.rafaelds.swapi.data.DataState
 import kotlinx.serialization.KSerializer
 
 abstract class RemoteService <T, U> constructor(private val networkRequestHelper: NetworkRequestHelper) {

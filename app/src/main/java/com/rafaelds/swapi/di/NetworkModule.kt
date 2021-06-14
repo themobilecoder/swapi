@@ -3,7 +3,7 @@ package com.rafaelds.swapi.di
 import android.content.Context
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
-import com.rafaelds.swapi.data.NetworkConfig
+import com.rafaelds.swapi.data.network.NetworkConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
