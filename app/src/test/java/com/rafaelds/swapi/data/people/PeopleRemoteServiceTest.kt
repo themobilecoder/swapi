@@ -2,7 +2,7 @@ package com.rafaelds.swapi.data.people
 
 import com.nhaarman.mockitokotlin2.*
 import com.rafaelds.swapi.CoroutineTest
-import com.rafaelds.swapi.data.DataState
+import com.rafaelds.swapi.data.ViewState
 import com.rafaelds.swapi.data.network.NetworkConfig
 import com.rafaelds.swapi.data.network.NetworkRequestHelper
 import com.rafaelds.swapi.ui.people.Person
@@ -28,7 +28,7 @@ class PeopleRemoteServiceTest : CoroutineTest(){
             val results = listOf(Person("Luke", "http://uri/people/42/"))
             val networkResponse = NetworkRequestHelper.NetworkResponse.Success(PeopleDTO(1, "next", results))
             whenever(networkRequestHelper.request(any(), eq(PeopleDTO.serializer()))).thenReturn(networkResponse)
-            val expectedResult = DataState.success(listOf(Person(42, "Luke")))
+            val expectedResult = ViewState.success(listOf(Person(42, "Luke")))
 
             val actualResult = peopleRemoteService.fetchData()
 

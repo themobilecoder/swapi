@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelds.swapi.data.State
+import com.rafaelds.swapi.data.ViewState
 import com.rafaelds.swapi.databinding.FragmentPersonListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,24 +55,24 @@ class PersonListFragment : Fragment() {
 
         viewModel.screenState.observe(viewLifecycleOwner) { state ->
             when (state.state) {
-                State.SUCCESS -> {
+                ViewState.State.SUCCESS -> {
                     recyclerView.visibility = VISIBLE
                     errorView.visibility = GONE
                     loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
                     personListAdapter.submitList(state.data)
                 }
-                State.LOADING -> {
+                ViewState.State.LOADING -> {
                     recyclerView.visibility = GONE
                     loadingSpinner.visibility = VISIBLE
                 }
-                State.ERROR -> {
+                ViewState.State.ERROR -> {
                     recyclerView.visibility = GONE
                     errorView.visibility = VISIBLE
                     loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
                 }
-                State.IDLE -> {
+                ViewState.State.IDLE -> {
 
                 }
             }

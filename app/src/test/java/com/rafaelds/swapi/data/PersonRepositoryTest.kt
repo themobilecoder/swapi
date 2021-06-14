@@ -23,7 +23,7 @@ class PersonRepositoryTest : CoroutineTest() {
     @Test
     fun `should return people list data state`() {
         runBlocking {
-            val expectedResult = DataState.success(listOf(Person(1, "Name")))
+            val expectedResult = ViewState.success(listOf(Person(1, "Name")))
             whenever(peopleRemoteService.fetchData()).thenReturn(expectedResult)
 
             val actualResult = peopleRepository.getPeopleList()

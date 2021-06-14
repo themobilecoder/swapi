@@ -5,7 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
-import com.rafaelds.swapi.data.DataState
+import com.rafaelds.swapi.data.ViewState
 import com.rafaelds.swapi.data.people.PeopleRepository
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
@@ -24,19 +24,19 @@ class PersonListViewModelTest : CoroutineTest() {
 
     @Test
     fun `should have idle as default screen state`() {
-        assertEquals(DataState.idle<List<Person>>(), viewModel.screenState.value)
+        assertEquals(ViewState.idle<List<Person>>(), viewModel.screenState.value)
     }
 
     @Test
     fun `should update screen state when fetching person list`() {
         runBlocking(Dispatchers.IO) {
-            val observer: Observer<DataState<List<Person>>> = mock()
+            val observer: Observer<ViewState<List<Person>>> = mock()
             viewModel.screenState.observeForever(observer)
-            val successState = DataState.success(listOf(Person(1, "Random")))
+            val successState = ViewState.success(listOf(Person(1, "Random")))
             whenever(repository.getPeopleList()).thenReturn(successState)
             viewModel.fetchPeopleList()
 
-            verify(observer).onChanged(DataState.loading())
+            verify(observer).onChanged(ViewState.loading())
             verify(observer).onChanged(successState)
         }
     }
