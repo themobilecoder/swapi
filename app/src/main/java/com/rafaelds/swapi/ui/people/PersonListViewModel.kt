@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PeopleListViewModel @Inject constructor(private val peopleRepository: PeopleRepository) :
+class PersonListViewModel @Inject constructor(private val peopleRepository: PeopleRepository) :
     ViewModel() {
 
-    val screenState: LiveData<DataState<List<People>>> get() = _screenState
-    private val _screenState = MutableLiveData<DataState<List<People>>>(DataState.idle())
+    val screenState: LiveData<DataState<List<Person>>> get() = _screenState
+    private val _screenState = MutableLiveData<DataState<List<Person>>>(DataState.idle())
 
     fun fetchPeopleList() {
         viewModelScope.launch(Dispatchers.IO) {

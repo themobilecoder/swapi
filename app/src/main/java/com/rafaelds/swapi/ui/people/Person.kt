@@ -1,6 +1,6 @@
 package com.rafaelds.swapi.ui.people
 
-data class People(
+data class Person(
     val id: Int,
     val name: String,
 )

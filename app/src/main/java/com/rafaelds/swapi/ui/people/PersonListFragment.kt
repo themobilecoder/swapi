@@ -13,24 +13,24 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.State
-import com.rafaelds.swapi.databinding.FragmentPeopleListBinding
+import com.rafaelds.swapi.databinding.FragmentPersonListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PeopleListFragment : Fragment() {
+class PersonListFragment : Fragment() {
 
-    private val viewModel: PeopleListViewModel by viewModels()
+    private val viewModel: PersonListViewModel by viewModels()
 
-    private var _binding: FragmentPeopleListBinding? = null
+    private var _binding: FragmentPersonListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var peopleListAdapter: PeopleListAdapter
+    private lateinit var personListAdapter: PersonListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPeopleListBinding.inflate(inflater, container, false)
+        _binding = FragmentPersonListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -60,7 +60,7 @@ class PeopleListFragment : Fragment() {
                     errorView.visibility = GONE
                     loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
-                    peopleListAdapter.submitList(state.data)
+                    personListAdapter.submitList(state.data)
                 }
                 State.LOADING -> {
                     recyclerView.visibility = GONE
@@ -82,9 +82,9 @@ class PeopleListFragment : Fragment() {
     }
 
     private fun setupAdapter(recyclerView: RecyclerView) {
-        peopleListAdapter = PeopleListAdapter()
+        personListAdapter = PersonListAdapter()
         with(recyclerView) {
-            adapter = peopleListAdapter
+            adapter = personListAdapter
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()

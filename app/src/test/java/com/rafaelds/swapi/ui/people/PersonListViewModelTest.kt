@@ -16,23 +16,23 @@ import org.junit.Test
 
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
-class PeopleListViewModelTest : CoroutineTest() {
+class PersonListViewModelTest : CoroutineTest() {
 
     private val repository: PeopleRepository = mock()
 
-    private val viewModel = PeopleListViewModel(repository)
+    private val viewModel = PersonListViewModel(repository)
 
     @Test
     fun `should have idle as default screen state`() {
-        assertEquals(DataState.idle<List<People>>(), viewModel.screenState.value)
+        assertEquals(DataState.idle<List<Person>>(), viewModel.screenState.value)
     }
 
     @Test
-    fun `should update screen state when fetching people list`() {
+    fun `should update screen state when fetching person list`() {
         runBlocking(Dispatchers.IO) {
-            val observer: Observer<DataState<List<People>>> = mock()
+            val observer: Observer<DataState<List<Person>>> = mock()
             viewModel.screenState.observeForever(observer)
-            val successState = DataState.success(listOf(People(1, "Random")))
+            val successState = DataState.success(listOf(Person(1, "Random")))
             whenever(repository.getPeopleList()).thenReturn(successState)
             viewModel.fetchPeopleList()
 

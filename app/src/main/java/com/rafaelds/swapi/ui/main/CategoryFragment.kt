@@ -32,7 +32,7 @@ class CategoryFragment : Fragment() {
         requireContext(), arrayOf(
             Category(resources.getString(R.string.people)) {
                 findNavController().navigate(
-                    CategoryFragmentDirections.actionMainDestToPeopleListFragment()
+                    CategoryFragmentDirections.actionMainDestToPersonListFragment()
                 )
             },
             Category(resources.getString(R.string.planets)) {

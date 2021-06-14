@@ -11,8 +11,8 @@
         android:label="@string/home_title"
         tools:layout="@layout/fragment_category" >
         <action
-            android:id="@+id/action_main_dest_to_peopleListFragment"
-            app:destination="@id/people_list_dest" />
+            android:id="@+id/action_main_dest_to_personListFragment"
+            app:destination="@id/person_list_dest" />
         <action
             android:id="@+id/action_main_dest_to_planetListFragment"
             app:destination="@id/planet_list_destination" />
@@ -30,10 +30,10 @@
             app:destination="@id/starship_list_dest" />
     </fragment>
     <fragment
-        android:id="@+id/people_list_dest"
-        android:name="com.rafaelds.swapi.ui.people.PeopleListFragment"
+        android:id="@+id/person_list_dest"
+        android:name="com.rafaelds.swapi.ui.people.PersonListFragment"
         android:label="@string/people"
-        tools:layout="@layout/fragment_people_list" />
+        tools:layout="@layout/fragment_person_list" />
     <fragment
         android:id="@+id/planet_list_destination"
         android:name="com.rafaelds.swapi.ui.planets.PlanetListFragment"

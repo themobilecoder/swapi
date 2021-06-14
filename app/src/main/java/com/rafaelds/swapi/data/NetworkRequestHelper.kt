@@ -15,7 +15,7 @@ class NetworkRequestHelper @Inject constructor(private val requestQueue: Request
 
     sealed class NetworkResponse<T> {
         class Success<T>(val data: T) : NetworkResponse<T>()
-        class Failure<T>(val message: String) : NetworkResponse<T>()
+        class Error<T>(val message: String) : NetworkResponse<T>()
     }
 
     suspend fun <T> request(uri: String, serializer: KSerializer<T>): NetworkResponse<T> {
@@ -29,7 +29,7 @@ class NetworkRequestHelper @Inject constructor(private val requestQueue: Request
                     continuation.resume(NetworkResponse.Success(data))
                 },
                 {
-                    continuation.resume(NetworkResponse.Failure(it?.message ?: "Unknown error"))
+                    continuation.resume(NetworkResponse.Error(it?.message ?: "Unknown error"))
                 }
             )
             requestQueue.add(request)

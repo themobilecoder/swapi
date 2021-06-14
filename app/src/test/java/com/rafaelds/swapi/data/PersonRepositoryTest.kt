@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
 import com.rafaelds.swapi.data.people.PeopleRemoteService
 import com.rafaelds.swapi.data.people.PeopleRepository
-import com.rafaelds.swapi.ui.people.People
+import com.rafaelds.swapi.ui.people.Person
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -15,7 +15,7 @@ import kotlin.test.assertEquals
 
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
-class PeopleRepositoryTest : CoroutineTest() {
+class PersonRepositoryTest : CoroutineTest() {
 
     private val peopleRemoteService: PeopleRemoteService = mock()
     private val peopleRepository = PeopleRepository(peopleRemoteService)
@@ -23,7 +23,7 @@ class PeopleRepositoryTest : CoroutineTest() {
     @Test
     fun `should return people list data state`() {
         runBlocking {
-            val expectedResult = DataState.success(listOf(People(1, "Name")))
+            val expectedResult = DataState.success(listOf(Person(1, "Name")))
             whenever(peopleRemoteService.fetchData()).thenReturn(expectedResult)
 
             val actualResult = peopleRepository.getPeopleList()
