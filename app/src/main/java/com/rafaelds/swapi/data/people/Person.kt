@@ -1,6 +1,3 @@
 package com.rafaelds.swapi.data.people
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class PersonDTO(val name: String, val url: String)
+data class Person(val id: Int, val name: String)

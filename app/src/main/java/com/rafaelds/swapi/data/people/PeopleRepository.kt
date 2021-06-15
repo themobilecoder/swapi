@@ -3,7 +3,6 @@ package com.rafaelds.swapi.data.people
 import androidx.lifecycle.LiveData
 import androidx.paging.*
 import com.rafaelds.swapi.data.network.NetworkConfig
-import com.rafaelds.swapi.data.local.Person
 import javax.inject.Inject
 import javax.inject.Singleton
 
