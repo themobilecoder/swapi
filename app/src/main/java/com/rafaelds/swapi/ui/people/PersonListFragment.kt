@@ -75,7 +75,9 @@ class PersonListFragment : Fragment() {
     private fun setupAdapter(recyclerView: RecyclerView) {
         personListAdapter = PersonListAdapter()
         with(recyclerView) {
-            adapter = personListAdapter
+            adapter = personListAdapter.withLoadStateFooter(PersonLoadAdapter {
+                personListAdapter.retry()
+            })
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()

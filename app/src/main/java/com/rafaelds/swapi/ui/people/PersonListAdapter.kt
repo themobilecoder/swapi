@@ -40,7 +40,7 @@ class PersonListAdapter : PagingDataAdapter<Person, PersonListAdapter.PersonList
 
         companion object {
             fun create(parent: ViewGroup): PersonListViewHolder {
-                val binding = ListItemPeopleBinding.inflate(LayoutInflater.from(parent.context))
+                val binding = ListItemPeopleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return PersonListViewHolder(binding)
             }
         }
