@@ -67,6 +67,10 @@ class PersonListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.fetchPeopleList().observe(viewLifecycleOwner) {
             personListAdapter.submitData(lifecycle, it)
         }
