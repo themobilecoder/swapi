@@ -4,7 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.rafaelds.swapi.data.network.NetworkConfig
-import com.rafaelds.swapi.ui.people.Person
+import com.rafaelds.swapi.data.local.Person
 
 @ExperimentalPagingApi
 class PeoplePagingSource constructor(private val peopleRemoteService: PeopleRemoteService, private val networkConfig: NetworkConfig) : PagingSource<Int, Person>() {

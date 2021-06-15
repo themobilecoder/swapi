@@ -10,7 +10,7 @@ import com.rafaelds.swapi.data.network.NetworkConfig
 import com.rafaelds.swapi.data.people.PeopleDTO
 import com.rafaelds.swapi.data.people.PeoplePagingSource
 import com.rafaelds.swapi.data.people.PeopleRemoteService
-import com.rafaelds.swapi.ui.people.Person
+import com.rafaelds.swapi.data.local.Person
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
