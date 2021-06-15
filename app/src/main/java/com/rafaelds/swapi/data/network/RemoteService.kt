@@ -2,12 +2,12 @@ package com.rafaelds.swapi.data.network
 
 import kotlinx.serialization.KSerializer
 
-abstract class RemoteService <T, U> constructor(private val networkRequestHelper: NetworkRequestHelper) {
 
-    abstract val outputSerializer: KSerializer<T>
-    abstract fun dtoToModelConverter(dto: T): U
+abstract class RemoteService<Dto> constructor(private val networkRequestHelper: NetworkRequestHelper) {
 
-    suspend fun fetchData(url: String): T {
+    abstract val outputSerializer: KSerializer<Dto>
+
+    suspend fun fetchData(url: String): Dto {
         val response = networkRequestHelper.request(
             url,
             outputSerializer
@@ -17,8 +17,10 @@ abstract class RemoteService <T, U> constructor(private val networkRequestHelper
                 response.data
             }
             else -> {
-                throw Exception()
+                throw RemoteServiceException()
             }
         }
     }
+
+    class RemoteServiceException : Exception("Network Error")
 }

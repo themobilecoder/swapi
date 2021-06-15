@@ -2,15 +2,11 @@ package com.rafaelds.swapi.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
 import com.rafaelds.swapi.data.network.NetworkConfig
-import com.rafaelds.swapi.data.people.PeopleDTO
-import com.rafaelds.swapi.data.people.PeoplePagingSource
-import com.rafaelds.swapi.data.people.PeopleRemoteService
-import com.rafaelds.swapi.data.people.Person
+import com.rafaelds.swapi.data.people.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -28,19 +24,24 @@ class PeoplePagingSourceTest : CoroutineTest() {
 
     private val peoplePagingSource = PeoplePagingSource(peopleRemoteService, networkConfig)
 
-
     @Test
     fun `should get data successfully`() {
         runBlocking {
-            whenever(peopleRemoteService.fetchData(anyString())).thenReturn(PeopleDTO(0, "", listOf(), null))
+            whenever(peopleRemoteService.fetchData(anyString())).thenReturn(
+                PeopleDTO(
+                    0,
+                    "",
+                    listOf(PersonDTO("Luke", "http://people/42")),
+                    null
+                )
+            )
             whenever(networkConfig.baseUri).thenReturn("https://this.uri")
-            val expectedData = listOf(Person(1, "Luke"))
-            whenever(peopleRemoteService.dtoToModelConverter(any())).thenReturn(expectedData)
+            val expectedData = listOf(Person(42, "Luke"))
             val mockParams: PagingSource.LoadParams<Int> = mock()
 
-            val actual: PagingSource.LoadResult<Int, Person> = peoplePagingSource.load(mockParams)
+            val actual = peoplePagingSource.load(mockParams)
 
-            val expected =  PagingSource.LoadResult.Page(
+            val expected = PagingSource.LoadResult.Page(
                 data = expectedData,
                 prevKey = null,
                 nextKey = 2
@@ -52,10 +53,10 @@ class PeoplePagingSourceTest : CoroutineTest() {
     @Test
     fun `should return error on exception`() {
         runBlocking {
-            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
+            val mockParams: PagingSource.LoadParams<Int> = mock()
             val exception = RuntimeException()
             whenever(peopleRemoteService.fetchData(anyString())).thenThrow(exception)
-            val mockParams: PagingSource.LoadParams<Int> = mock()
+            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
 
             val actual: PagingSource.LoadResult<Int, Person> = peoplePagingSource.load(mockParams)
 
