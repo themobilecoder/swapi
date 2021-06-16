@@ -36,7 +36,7 @@ class PeoplePagingSourceTest : CoroutineTest() {
                 )
             )
             whenever(networkConfig.baseUri).thenReturn("https://this.uri")
-            val expectedData = listOf(Person(42, "Luke"))
+            val expectedData = listOf(Person(42, "Luke", "swapi://people/42"))
             val mockParams: PagingSource.LoadParams<Int> = mock()
 
             val actual = peoplePagingSource.load(mockParams)

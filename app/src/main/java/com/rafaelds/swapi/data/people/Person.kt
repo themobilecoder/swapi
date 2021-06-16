@@ -1,3 +1,3 @@
 package com.rafaelds.swapi.data.people
 
-data class Person(val id: Int, val name: String)
+data class Person(val id: Int, val name: String, val appUri: String)

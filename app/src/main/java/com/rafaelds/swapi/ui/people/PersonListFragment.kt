@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.ui.people
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,7 +79,10 @@ class PersonListFragment : Fragment() {
     }
 
     private fun setupAdapter(recyclerView: RecyclerView) {
-        personListAdapter = PersonListAdapter()
+        personListAdapter = PersonListAdapter { personUri ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(personUri))
+            startActivity(intent)
+        }
         with(recyclerView) {
             adapter = personListAdapter.withLoadStateFooter(PersonLoadAdapter {
                 personListAdapter.retry()

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.people.Person
 import com.rafaelds.swapi.databinding.ListItemPeopleBinding
 
-class PersonListAdapter : PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
+class PersonListAdapter(private val onClick: (url: String) -> Unit ) : PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonListViewHolder {
         return PersonListViewHolder.create(parent)
@@ -17,7 +17,7 @@ class PersonListAdapter : PagingDataAdapter<Person, PersonListAdapter.PersonList
     override fun onBindViewHolder(holder: PersonListViewHolder, position: Int) {
         val person = getItem(position)
         person?.let {
-            holder.setData(person)
+            holder.setData(person, onClick)
         }
     }
 
@@ -45,8 +45,11 @@ class PersonListAdapter : PagingDataAdapter<Person, PersonListAdapter.PersonList
             }
         }
 
-        fun setData(person: Person) {
+        fun setData(person: Person, onClick: (String) -> Unit) {
             binding.itemTitle.text = person.name
+            binding.root.setOnClickListener {
+                onClick(person.appUri)
+            }
         }
 
     }

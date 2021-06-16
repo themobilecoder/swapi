@@ -39,7 +39,7 @@ class PeoplePagingSource constructor(
     override fun convert(dto: PeopleDTO): List<Person> {
         return dto.results.map { people ->
             val regexMatch = FIND_ID_REGEX.toRegex().find(people.url)
-            Person(regexMatch?.destructured?.component1()?.toInt() ?: -1, people.name)
+            Person(regexMatch?.destructured?.component1()?.toInt() ?: -1, people.name, people.url.replace("http", "swapi"))
         }
     }
 
