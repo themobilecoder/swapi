@@ -49,7 +49,7 @@ class PersonListFragment : Fragment() {
         val refreshLayout = binding.refreshLayout
         val loadingSpinner = binding.loadingSpinner
         val recyclerView = binding.recyclerView
-        val errorView = binding.errorView
+        val errorView = binding.offline
 
         setupAdapter(recyclerView)
 
