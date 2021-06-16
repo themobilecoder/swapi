@@ -1,12 +1,12 @@
-package com.rafaelds.swapi
+package com.rafaelds.swapi.ui
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import com.rafaelds.swapi.ui.BaseActivity
+import androidx.navigation.ui.NavigationUI
+import com.rafaelds.swapi.R
 
 class MainActivity : BaseActivity() {
 
@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
             .findFragmentById(R.id.fragment_container) as NavHostFragment?
         val navController = host?.navController
         navController?.let {
-            setupActionBarWithNavController(this, it, appBarConfiguration)
+            NavigationUI.setupActionBarWithNavController(this, it, appBarConfiguration)
         }
     }
 

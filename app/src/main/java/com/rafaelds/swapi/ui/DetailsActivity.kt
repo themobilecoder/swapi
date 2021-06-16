@@ -1,8 +1,7 @@
-package com.rafaelds.swapi.ui.people
+package com.rafaelds.swapi.ui
 
 import android.os.Bundle
 import com.rafaelds.swapi.databinding.ActivityDetailsBinding
-import com.rafaelds.swapi.ui.BaseActivity
 
 class DetailsActivity : BaseActivity() {
 
