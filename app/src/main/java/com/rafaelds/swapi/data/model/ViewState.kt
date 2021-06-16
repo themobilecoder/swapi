@@ -1,6 +1,6 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.model
 
-import com.rafaelds.swapi.data.ViewState.State.*
+import com.rafaelds.swapi.data.model.ViewState.State.*
 
 data class ViewState<T>(val state: State, val data: T?) {
 

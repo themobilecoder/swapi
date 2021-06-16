@@ -1,8 +1,11 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.api.people
 
 import androidx.lifecycle.LiveData
 import androidx.paging.*
 import com.rafaelds.swapi.data.network.NetworkConfig
+import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
+import com.rafaelds.swapi.data.model.people.Person
+import com.rafaelds.swapi.data.model.people.PersonDtoToPersonMapper
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.model.people
 
 import kotlinx.serialization.Serializable
 

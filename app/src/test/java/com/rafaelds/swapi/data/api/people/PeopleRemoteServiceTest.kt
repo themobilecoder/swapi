@@ -1,9 +1,11 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.api.people
 
 import com.nhaarman.mockitokotlin2.*
 import com.rafaelds.swapi.CoroutineTest
 import com.rafaelds.swapi.data.network.NetworkRequestHelper
 import com.rafaelds.swapi.data.network.RemoteService
+import com.rafaelds.swapi.data.model.people.PeopleDTO
+import com.rafaelds.swapi.data.model.people.PersonDTO
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking

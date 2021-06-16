@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.api.people
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
@@ -7,12 +7,15 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
 import com.rafaelds.swapi.data.network.NetworkConfig
-import com.rafaelds.swapi.data.people.*
+import com.rafaelds.swapi.data.model.people.PeopleDTO
+import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
+import com.rafaelds.swapi.data.model.people.Person
+import com.rafaelds.swapi.data.model.people.PersonDTO
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
+import org.mockito.ArgumentMatchers
 import kotlin.test.assertEquals
 
 @ExperimentalPagingApi
@@ -31,7 +34,7 @@ class PeoplePagingSourceTest : CoroutineTest() {
         runBlocking {
             val expectedData = listOf(PERSON)
             whenever(mapper.convert(any())).thenReturn(expectedData)
-            whenever(peopleRemoteService.fetchData(anyString())).thenReturn(
+            whenever(peopleRemoteService.fetchData(ArgumentMatchers.anyString())).thenReturn(
                 PeopleDTO(
                     0,
                     "",
@@ -58,7 +61,7 @@ class PeoplePagingSourceTest : CoroutineTest() {
         runBlocking {
             val mockParams: PagingSource.LoadParams<Int> = mock()
             val exception = RuntimeException()
-            whenever(peopleRemoteService.fetchData(anyString())).thenThrow(exception)
+            whenever(peopleRemoteService.fetchData(ArgumentMatchers.anyString())).thenThrow(exception)
             whenever(networkConfig.baseUri).thenReturn("https://this.uri")
 
             val actual: PagingSource.LoadResult<Int, Person> = peoplePagingSource.load(mockParams)

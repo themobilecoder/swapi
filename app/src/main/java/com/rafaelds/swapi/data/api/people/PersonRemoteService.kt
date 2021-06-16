@@ -1,7 +1,8 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.api.people
 
 import com.rafaelds.swapi.data.network.NetworkRequestHelper
 import com.rafaelds.swapi.data.network.RemoteService
+import com.rafaelds.swapi.data.model.people.PersonDTO
 import kotlinx.serialization.KSerializer
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.model.people
 
 import com.rafaelds.swapi.data.DtoToModelMapper
 import javax.inject.Inject

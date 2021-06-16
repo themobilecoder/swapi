@@ -1,14 +1,15 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.model.people
 
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class PersonDtoToPersonMapperTest {
-    private val personDtoToPersonListMapper = PersonDtoToPersonMapper()
+class PeopleDtoToPersonListMapperTest {
+    private val peopleDtoToPersonListMapper = PeopleDtoToPersonListMapper()
 
     @Test
     fun `should convert correctly dto with app uri`() {
-        assertEquals(PERSON, personDtoToPersonListMapper.convert(PERSON_DTO))
+        val peopleDto = PeopleDTO(1, "next", listOf(PERSON_DTO), "prev")
+        assertEquals(listOf(PERSON), peopleDtoToPersonListMapper.convert(peopleDto))
     }
 
     companion object {

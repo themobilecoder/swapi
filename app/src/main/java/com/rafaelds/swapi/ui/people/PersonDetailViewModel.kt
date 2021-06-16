@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
-import com.rafaelds.swapi.data.ViewState
-import com.rafaelds.swapi.data.people.PeopleRepository
-import com.rafaelds.swapi.data.people.Person
+import com.rafaelds.swapi.data.model.ViewState
+import com.rafaelds.swapi.data.api.people.PeopleRepository
+import com.rafaelds.swapi.data.model.people.Person
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

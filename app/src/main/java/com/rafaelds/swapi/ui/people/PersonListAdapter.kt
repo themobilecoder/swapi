@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelds.swapi.data.people.Person
+import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.databinding.ListItemPeopleBinding
 
 class PersonListAdapter(private val onClick: (url: String) -> Unit ) : PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {

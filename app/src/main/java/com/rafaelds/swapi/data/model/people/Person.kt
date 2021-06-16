@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data.people
+package com.rafaelds.swapi.data.model.people
 
 data class Person(
     val id: Int,

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
-import com.rafaelds.swapi.data.ViewState.State.*
+import com.rafaelds.swapi.data.model.ViewState.State.*
 import com.rafaelds.swapi.databinding.FragmentPersonDetailsBinding
 import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
 import dagger.hilt.android.AndroidEntryPoint
