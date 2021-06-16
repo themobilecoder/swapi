@@ -21,7 +21,7 @@ class PeopleRemoteServiceTest : CoroutineTest() {
     @Test
     fun `should return correct data on fetch people`() {
         runBlocking {
-            val results = listOf(PersonDTO("Luke", "http://uri/people/42"))
+            val results = listOf(PERSON_DTO)
             val expectedPeopleDTO = PeopleDTO(1, "next", results, "prev")
             val networkResponse = NetworkRequestHelper.NetworkResponse.Success(expectedPeopleDTO)
             whenever(networkRequestHelper.request(any(), eq(PeopleDTO.serializer()))).thenReturn(networkResponse)
@@ -42,6 +42,10 @@ class PeopleRemoteServiceTest : CoroutineTest() {
             peopleRemoteService.fetchData("someuri")
 
         }
+    }
+
+    companion object {
+        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
     }
 
 }

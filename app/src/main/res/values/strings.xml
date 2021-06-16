@@ -10,4 +10,11 @@
     <string name="failed_to_load">Failed to load</string>
     <string name="try_again_and_refresh_screen">Try again and refresh screen</string>
     <string name="retry">Retry</string>
+    <string name="home">Home</string>
+    <string name="gender">Gender</string>
+    <string name="hair_color">Hair color</string>
+    <string name="mass">Mass</string>
+    <string name="eye_color">Eye color</string>
+    <string name="skin_color">Skin Color</string>
+    <string name="height">Height</string>
 </resources>
