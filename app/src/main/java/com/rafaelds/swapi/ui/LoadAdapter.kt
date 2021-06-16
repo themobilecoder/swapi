@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.ui.people
+package com.rafaelds.swapi.ui
 
 import android.view.LayoutInflater
 import android.view.View.GONE
@@ -9,21 +9,21 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.databinding.ListItemLoadingBinding
 
-class PersonLoadAdapter(private val retry: () -> Unit) : LoadStateAdapter<PersonLoadAdapter.PersonLoadStateViewHolder>() {
+class LoadAdapter(private val retry: () -> Unit) : LoadStateAdapter<LoadAdapter.PlanetLoadStateViewHolder>() {
 
-    override fun onBindViewHolder(holder: PersonLoadStateViewHolder, loadState: LoadState) {
+    override fun onBindViewHolder(holder: PlanetLoadStateViewHolder, loadState: LoadState) {
         holder.bind(loadState, retry)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): PersonLoadStateViewHolder {
-        return PersonLoadStateViewHolder.create(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): PlanetLoadStateViewHolder {
+        return PlanetLoadStateViewHolder.create(parent)
     }
 
-    class PersonLoadStateViewHolder(private val binding: ListItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
-        companion object  {
-            fun create(parent: ViewGroup) : PersonLoadStateViewHolder {
+    class PlanetLoadStateViewHolder(private val binding: ListItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
+        companion object {
+            fun create(parent: ViewGroup): PlanetLoadStateViewHolder {
                 val binding = ListItemLoadingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return PersonLoadStateViewHolder(binding)
+                return PlanetLoadStateViewHolder(binding)
             }
         }
 

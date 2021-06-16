@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelds.swapi.databinding.FragmentPersonListBinding
+import com.rafaelds.swapi.databinding.FragmentListBinding
+import com.rafaelds.swapi.ui.LoadAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
@@ -25,7 +26,7 @@ class PersonListFragment : Fragment() {
 
     private val viewModel: PersonListViewModel by viewModels()
 
-    private var _binding: FragmentPersonListBinding? = null
+    private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var personListAdapter: PersonListAdapter
@@ -34,7 +35,7 @@ class PersonListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPersonListBinding.inflate(inflater, container, false)
+        _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -84,7 +85,7 @@ class PersonListFragment : Fragment() {
             startActivity(intent)
         }
         with(recyclerView) {
-            adapter = personListAdapter.withLoadStateFooter(PersonLoadAdapter {
+            adapter = personListAdapter.withLoadStateFooter(LoadAdapter {
                 personListAdapter.retry()
             })
             setHasFixedSize(true)

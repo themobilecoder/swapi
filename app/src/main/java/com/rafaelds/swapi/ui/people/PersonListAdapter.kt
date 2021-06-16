@@ -6,9 +6,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.model.people.Person
-import com.rafaelds.swapi.databinding.ListItemPeopleBinding
+import com.rafaelds.swapi.databinding.ListItemBinding
 
-class PersonListAdapter(private val onClick: (url: String) -> Unit ) : PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
+class PersonListAdapter(private val onClick: (url: String) -> Unit) :
+    PagingDataAdapter<Person, PersonListAdapter.PersonListViewHolder>(ASYNC_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonListViewHolder {
         return PersonListViewHolder.create(parent)
@@ -35,12 +36,12 @@ class PersonListAdapter(private val onClick: (url: String) -> Unit ) : PagingDat
         }
     }
 
-    class PersonListViewHolder private constructor(private val binding: ListItemPeopleBinding) :
+    class PersonListViewHolder private constructor(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun create(parent: ViewGroup): PersonListViewHolder {
-                val binding = ListItemPeopleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return PersonListViewHolder(binding)
             }
         }

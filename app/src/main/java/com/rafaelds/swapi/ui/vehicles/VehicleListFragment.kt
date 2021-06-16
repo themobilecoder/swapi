@@ -15,7 +15,7 @@ class VehicleListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_vehicle_list, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
 }

@@ -33,30 +33,30 @@
         android:id="@+id/person_list_dest"
         android:name="com.rafaelds.swapi.ui.people.PersonListFragment"
         android:label="@string/people"
-        tools:layout="@layout/fragment_person_list" />
+        tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/planet_list_destination"
         android:name="com.rafaelds.swapi.ui.planets.PlanetListFragment"
         android:label="@string/planets"
-        tools:layout="@layout/fragment_planet_list" />
+        tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/film_list_dest"
         android:name="com.rafaelds.swapi.ui.films.FilmListFragment"
         android:label="@string/films"
-        tools:layout="@layout/fragment_film_list" />
+        tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/specie_list_dest"
         android:name="com.rafaelds.swapi.ui.species.SpecieListFragment"
         android:label="@string/species"
-        tools:layout="@layout/fragment_specie_list" />
+        tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/vehicle_list_dest"
         android:name="com.rafaelds.swapi.ui.vehicles.VehicleListFragment"
         android:label="@string/vehicles"
-        tools:layout="@layout/fragment_vehicle_list" />
+        tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/starship_list_dest"
         android:name="com.rafaelds.swapi.ui.starships.StarshipListFragment"
         android:label="@string/starships"
-        tools:layout="@layout/fragment_starship_list" />
+        tools:layout="@layout/fragment_list" />
 </navigation>
