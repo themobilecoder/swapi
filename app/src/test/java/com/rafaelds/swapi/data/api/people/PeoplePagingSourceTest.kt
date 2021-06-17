@@ -6,7 +6,6 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
-import com.rafaelds.swapi.data.network.NetworkConfig
 import com.rafaelds.swapi.data.model.people.PeopleDTO
 import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
 import com.rafaelds.swapi.data.model.people.Person
@@ -24,10 +23,9 @@ import kotlin.test.assertEquals
 class PeoplePagingSourceTest : CoroutineTest() {
 
     private val peopleRemoteService: PeopleRemoteService = mock()
-    private val networkConfig: NetworkConfig = mock()
     private val mapper: PeopleDtoToPersonListMapper = mock()
 
-    private val peoplePagingSource = PeoplePagingSource(peopleRemoteService, networkConfig, mapper)
+    private val peoplePagingSource = PeoplePagingSource("https://this.uri", peopleRemoteService, mapper)
 
     @Test
     fun `should get data successfully`() {
@@ -42,7 +40,6 @@ class PeoplePagingSourceTest : CoroutineTest() {
                     null
                 )
             )
-            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
             val mockParams: PagingSource.LoadParams<Int> = mock()
 
             val actual = peoplePagingSource.load(mockParams)
@@ -62,7 +59,6 @@ class PeoplePagingSourceTest : CoroutineTest() {
             val mockParams: PagingSource.LoadParams<Int> = mock()
             val exception = RuntimeException()
             whenever(peopleRemoteService.fetchData(ArgumentMatchers.anyString())).thenThrow(exception)
-            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
 
             val actual: PagingSource.LoadResult<Int, Person> = peoplePagingSource.load(mockParams)
 

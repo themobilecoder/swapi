@@ -1,47 +1,23 @@
 package com.rafaelds.swapi.data.api.people
 
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.PagingSource
-import androidx.paging.PagingState
-import com.rafaelds.swapi.data.network.NetworkConfig
+import com.rafaelds.swapi.data.api.BasePagingSource
+import com.rafaelds.swapi.data.model.people.PeopleDTO
 import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
 import com.rafaelds.swapi.data.model.people.Person
 
 @ExperimentalPagingApi
 class PeoplePagingSource constructor(
-    private val peopleRemoteService: PeopleRemoteService,
-    private val networkConfig: NetworkConfig,
-    private val mapper: PeopleDtoToPersonListMapper
-) : PagingSource<Int, Person>() {
+    uri: String,
+    peopleRemoteService: PeopleRemoteService,
+    mapper: PeopleDtoToPersonListMapper
+) : BasePagingSource<Person, PeopleDTO>(uri, peopleRemoteService, mapper) {
 
-    override fun getRefreshKey(state: PagingState<Int, Person>): Int? {
-        return state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
-        }
+    override fun getPreviousKey(pageNumber: Int, response: PeopleDTO): Int? {
+        return if (response.previous != null) pageNumber - 1 else null
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Person> {
-        return try {
-            val pageNumber = params.key ?: 1
-            val baseUri = "${networkConfig.baseUri}$PEOPLE_SUB_URI"
-            val response = peopleRemoteService.fetchData("${baseUri}?page=$pageNumber")
-            val prevKey = if (response.previous != null) pageNumber - 1 else null
-            val nextKey = if (response.next != null) pageNumber + 1 else null
-            val data = mapper.convert(response)
-            LoadResult.Page(
-                data = data,
-                prevKey = prevKey,
-                nextKey = nextKey
-            )
-        } catch (e: Exception) {
-            LoadResult.Error(e)
-        }
+    override fun getNextKey(pageNumber: Int, response: PeopleDTO): Int? {
+        return if (response.next != null) pageNumber + 1 else null
     }
-
-
-    companion object {
-        private const val PEOPLE_SUB_URI = "people/"
-    }
-
 }

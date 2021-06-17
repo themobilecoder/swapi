@@ -23,10 +23,9 @@ import kotlin.test.assertEquals
 @ExperimentalCoroutinesApi
 class PlanetsPagingSourceTest : CoroutineTest() {
     private val planetsRemoteService: PlanetsRemoteService = mock()
-    private val networkConfig: NetworkConfig = mock()
     private val mapper: PlanetsDtoToPlanetListMapper = mock()
 
-    private val planetsPagingSource = PlanetsPagingSource(planetsRemoteService, networkConfig, mapper)
+    private val planetsPagingSource = PlanetsPagingSource("https://this.uri", planetsRemoteService, mapper)
 
     @Test
     fun `should get data successfully`() {
@@ -41,7 +40,6 @@ class PlanetsPagingSourceTest : CoroutineTest() {
                     null
                 )
             )
-            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
             val mockParams: PagingSource.LoadParams<Int> = mock()
 
             val actual = planetsPagingSource.load(mockParams)
@@ -61,7 +59,6 @@ class PlanetsPagingSourceTest : CoroutineTest() {
             val mockParams: PagingSource.LoadParams<Int> = mock()
             val exception = RuntimeException()
             whenever(planetsRemoteService.fetchData(ArgumentMatchers.anyString())).thenThrow(exception)
-            whenever(networkConfig.baseUri).thenReturn("https://this.uri")
 
             val actual: PagingSource.LoadResult<Int, Planet> = planetsPagingSource.load(mockParams)
 
