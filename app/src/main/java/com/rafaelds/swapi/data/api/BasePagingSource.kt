@@ -2,7 +2,7 @@ package com.rafaelds.swapi.data.api
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.rafaelds.swapi.data.DtoToModelMapper
+import com.rafaelds.swapi.data.model.DtoToModelMapper
 import com.rafaelds.swapi.data.network.RemoteService
 
 abstract class BasePagingSource<Value : Any, Dto> constructor(

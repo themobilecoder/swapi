@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data
+package com.rafaelds.swapi.data.model
 
 interface DtoToModelMapper <Dto, Model> {
     fun convert(dto: Dto) : Model

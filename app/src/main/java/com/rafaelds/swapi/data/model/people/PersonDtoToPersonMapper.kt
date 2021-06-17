@@ -1,6 +1,6 @@
 package com.rafaelds.swapi.data.model.people
 
-import com.rafaelds.swapi.data.DtoToModelMapper
+import com.rafaelds.swapi.data.model.DtoToModelMapper
 import javax.inject.Inject
 import javax.inject.Singleton
 
