@@ -12,7 +12,7 @@ class PersonDtoToPersonMapperTest {
     }
 
     companion object {
-        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-        private val PERSON = Person(42, "Luke", "male", "swapi://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
+        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "http://homeworld")
+        private val PERSON = Person(42, "Luke", "male", "swapi://people/42", "120", "60", "fair", "blue", "blond", "1990", "swapi://homeworld")
     }
 }

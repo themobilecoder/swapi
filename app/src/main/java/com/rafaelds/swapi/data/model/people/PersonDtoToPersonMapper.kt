@@ -18,7 +18,7 @@ class PersonDtoToPersonMapper @Inject constructor() : DtoToModelMapper<PersonDTO
             eyeColor = dto.eye_color,
             hairColor = dto.hair_color,
             birthYear = dto.birth_year,
-            home = dto.homeworld,
+            home = dto.homeworld.replace("http", "swapi"),
             gender = dto.gender
         )
     }
