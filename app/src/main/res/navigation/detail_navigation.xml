@@ -11,8 +11,19 @@
         tools:layout="@layout/fragment_person_details"
         android:label="PersonDetailsFragment" >
         <deepLink
-            android:id="@+id/deepLink2"
             app:uri="swapi://swapi.dev/api/people/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailsFragment"
+        tools:layout="@layout/fragment_planet_details"
+        android:name="com.rafaelds.swapi.ui.planets.PlanetDetailsFragment"
+        android:label="PlanetDetailsFragment">
+        <deepLink
+            app:uri="swapi://swapi.dev/api/planets/{id}/" />
         <argument
             android:name="id"
             app:argType="integer"
