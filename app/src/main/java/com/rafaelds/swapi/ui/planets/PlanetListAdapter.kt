@@ -2,29 +2,31 @@ package com.rafaelds.swapi.ui.planets
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.databinding.ListItemBinding
+import com.rafaelds.swapi.ui.BaseListAdapter
 
-class PlanetListAdapter(private val onClick: (url: String) -> Unit) :
-    PagingDataAdapter<Planet, PlanetListAdapter.PlanetListViewHolder>(ASYNC_DIFF) {
+class PlanetListAdapter(onClick: (url: String) -> Unit) : BaseListAdapter<Planet>(onClick, ASYNC_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanetListViewHolder {
-        return PlanetListViewHolder.create(parent)
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PlanetListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PlanetListViewHolder, position: Int) {
-        val planet = getItem(position)
-        planet?.let {
-            holder.setData(planet, onClick)
+    inner class PlanetListViewHolder constructor(private val binding: ListItemBinding) :
+        BaseListAdapter.BaseListViewHolder<Planet>(binding) {
+        override fun setData(model: Planet, onClick: (String) -> Unit) {
+            binding.itemTitle.text = model.name
+            binding.root.setOnClickListener {
+                onClick(model.appUri)
+            }
         }
+
     }
 
     companion object {
         private val ASYNC_DIFF = object : DiffUtil.ItemCallback<Planet>() {
-
             override fun areItemsTheSame(oldItem: Planet, newItem: Planet): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -32,26 +34,6 @@ class PlanetListAdapter(private val onClick: (url: String) -> Unit) :
             override fun areContentsTheSame(oldItem: Planet, newItem: Planet): Boolean {
                 return oldItem == newItem
             }
-
         }
-    }
-
-    class PlanetListViewHolder private constructor(private val binding: ListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        companion object {
-            fun create(parent: ViewGroup): PlanetListViewHolder {
-                val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return PlanetListViewHolder(binding)
-            }
-        }
-
-        fun setData(person: Planet, onClick: (String) -> Unit) {
-            binding.itemTitle.text = person.name
-            binding.root.setOnClickListener {
-                onClick(person.appUri)
-            }
-        }
-
     }
 }
