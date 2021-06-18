@@ -4,6 +4,7 @@ import android.content.Context
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.rafaelds.swapi.data.network.NetworkConfig
+import com.rafaelds.swapi.data.network.NetworkConfigImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,8 +22,6 @@ object NetworkModule {
 
     @Provides
     fun provideNetworkConfig(): NetworkConfig {
-        return object : NetworkConfig {
-            override val baseUri = "https://swapi.dev/api/"
-        }
+        return NetworkConfigImpl()
     }
 }

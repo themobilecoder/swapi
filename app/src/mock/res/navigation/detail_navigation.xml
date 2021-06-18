@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_navigation"
+    app:startDestination="@id/personDetailsFragment">
+
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="com.rafaelds.swapi.ui.people.PersonDetailsFragment"
+        tools:layout="@layout/fragment_person_details"
+        android:label="PersonDetailsFragment" >
+        <deepLink
+            app:uri="swapi://localhost:8000/api/people/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailsFragment"
+        tools:layout="@layout/fragment_planet_details"
+        android:name="com.rafaelds.swapi.ui.planets.PlanetDetailsFragment"
+        android:label="PlanetDetailsFragment">
+        <deepLink
+            app:uri="swapi://localhost:8000/api/planets/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>

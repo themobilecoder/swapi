@@ -11,14 +11,14 @@ class PersonDtoToPersonMapper @Inject constructor() : DtoToModelMapper<PersonDTO
         return Person(
             id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
             name = dto.name,
-            appUri = dto.url.replace("http", "swapi"),
+            appUri = dto.url.replace("https", "swapi"),
             height = dto.height,
             mass = dto.mass,
             skinColor = dto.skin_color,
             eyeColor = dto.eye_color,
             hairColor = dto.hair_color,
             birthYear = dto.birth_year,
-            home = dto.homeworld.replace("http", "swapi"),
+            home = dto.homeworld.replace("https", "swapi"),
             gender = dto.gender
         )
     }

@@ -12,7 +12,7 @@ class PeopleDtoToPersonListMapper @Inject constructor() : DtoToModelMapper<Peopl
             Person(
                 id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
                 name = people.name,
-                appUri = people.url.replace("http", "swapi"),
+                appUri = people.url.replace("https", "swapi"),
                 height = people.height,
                 mass = people.mass,
                 skinColor = people.skin_color,
