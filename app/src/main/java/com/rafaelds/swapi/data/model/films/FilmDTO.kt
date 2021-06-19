@@ -8,7 +8,7 @@ data class FilmDTO(
     val episode_id: String,
     val director: String,
     val producer: String,
-    val releaseDate: String,
+    val release_date: String,
     val species: List<String>,
     val starships: List<String>,
     val vehicles: List<String>,

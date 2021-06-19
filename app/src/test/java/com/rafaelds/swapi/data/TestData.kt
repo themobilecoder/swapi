@@ -6,6 +6,8 @@ import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.model.people.PersonDTO
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.data.model.planets.PlanetDTO
+import com.rafaelds.swapi.data.model.starships.Starship
+import com.rafaelds.swapi.data.model.starships.StarshipDTO
 
 object TestData {
     val PERSON_DTO = PersonDTO(
@@ -67,7 +69,7 @@ object TestData {
         episode_id = "2",
         director = "director",
         producer = "producer",
-        releaseDate = "2010",
+        release_date = "2010",
         species = listOf(),
         starships = listOf(),
         vehicles = listOf(),
@@ -89,5 +91,44 @@ object TestData {
         planets = listOf(),
         appUri = "swapi://films/42",
         id = 42
+    )
+
+    val STARSHIP_DTO = StarshipDTO(
+        name = "Starship",
+        model = "model",
+        starship_class = "Starship Class",
+        manufacturer = "Manufacturer",
+        cost_in_credits = "32131",
+        length = "3123",
+        crew = "32131",
+        passengers = "4211",
+        max_atmosphering_speed = "94831",
+        hyperdrive_rating = "1",
+        MGLT = "MGLT",
+        cargo_capacity = "9000",
+        consumables = "5 years",
+        films = listOf(),
+        pilots = listOf(),
+        url = "http://starships/42"
+    )
+
+    val STARSHIP = Starship(
+        name = "Starship",
+        model = "model",
+        starshipClass = "Starship Class",
+        manufacturer = "Manufacturer",
+        costInCredit = "32131",
+        length = "3123",
+        crew = "32131",
+        passengers = "4211",
+        maxAtmoshperingSpeed = "94831",
+        hyperdriveRating = "1",
+        MGLT = "MGLT",
+        cargoCapacity = "9000",
+        consumables = "5 years",
+        films = listOf(),
+        pilots = listOf(),
+        appUri = "swapi://starships/42",
+        id = 4
     )
 }

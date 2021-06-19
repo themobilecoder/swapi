@@ -17,7 +17,7 @@ class FilmsDtoToFilmListMapper @Inject constructor() : DtoToModelMapper<FilmsDTO
                 director = film.director,
                 producer = film.producer,
                 episode = film.episode_id,
-                releaseDate = film.releaseDate,
+                releaseDate = film.release_date,
                 species = listOf(),
                 starships = listOf(),
                 vehicles = listOf(),

@@ -18,7 +18,7 @@ class FilmsRemoteServiceTest : CoroutineTest() {
 
     private val networkRequestHelper: NetworkRequestHelper = mock()
 
-    private val peopleRemoteService = FilmsRemoteService(networkRequestHelper)
+    private val filmsRemoteService = FilmsRemoteService(networkRequestHelper)
 
     @Test
     fun `should fetch correct data`() {
@@ -28,7 +28,7 @@ class FilmsRemoteServiceTest : CoroutineTest() {
             val networkResponse = NetworkRequestHelper.NetworkResponse.Success(expectedFilmsDTO)
             whenever(networkRequestHelper.request(any(), eq(FilmsDTO.serializer()))).thenReturn(networkResponse)
 
-            val actualResult: FilmsDTO = peopleRemoteService.fetchData("someuri")
+            val actualResult: FilmsDTO = filmsRemoteService.fetchData("someuri")
 
             assertEquals(expectedFilmsDTO, actualResult)
             verify(networkRequestHelper).request("someuri", FilmsDTO.serializer())
@@ -41,7 +41,7 @@ class FilmsRemoteServiceTest : CoroutineTest() {
             val networkResponse = NetworkRequestHelper.NetworkResponse.Error<FilmsDTO>("")
             whenever(networkRequestHelper.request(any(), eq(FilmsDTO.serializer()))).thenReturn(networkResponse)
 
-            peopleRemoteService.fetchData("someuri")
+            filmsRemoteService.fetchData("someuri")
 
         }
     }
