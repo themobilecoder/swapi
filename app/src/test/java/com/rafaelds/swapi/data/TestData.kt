@@ -8,6 +8,8 @@ import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.data.model.planets.PlanetDTO
 import com.rafaelds.swapi.data.model.starships.Starship
 import com.rafaelds.swapi.data.model.starships.StarshipDTO
+import com.rafaelds.swapi.data.model.vehicles.Vehicle
+import com.rafaelds.swapi.data.model.vehicles.VehicleDTO
 
 object TestData {
     val PERSON_DTO = PersonDTO(
@@ -117,7 +119,7 @@ object TestData {
         model = "model",
         starshipClass = "Starship Class",
         manufacturer = "Manufacturer",
-        costInCredit = "32131",
+        costInCredits = "32131",
         length = "3123",
         crew = "32131",
         passengers = "4211",
@@ -129,6 +131,41 @@ object TestData {
         films = listOf(),
         pilots = listOf(),
         appUri = "swapi://starships/42",
+        id = 4
+    )
+
+    val VEHICLE_DTO = VehicleDTO(
+        name = "Vehicle",
+        model = "model",
+        vehicle_class = "Vehicle Class",
+        manufacturer = "Manufacturer",
+        cost_in_credits = "32131",
+        length = "3123",
+        crew = "32131",
+        passengers = "4211",
+        max_atmosphering_speed = "94831",
+        cargo_capacity = "9000",
+        consumables = "5 years",
+        films = listOf(),
+        pilots = listOf(),
+        url = "http://vehicles/42"
+    )
+
+    val VEHICLE = Vehicle(
+        name = "Vehicle",
+        model = "model",
+        vehicleClass = "Vehicle Class",
+        manufacturer = "Manufacturer",
+        costInCredits = "32131",
+        length = "3123",
+        crew = "32131",
+        passengers = "4211",
+        maxAtmoshperingSpeed = "94831",
+        cargoCapacity = "9000",
+        consumables = "5 years",
+        films = listOf(),
+        pilots = listOf(),
+        appUri = "swapi://vehicles/42",
         id = 4
     )
 }

@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.data.model.starships
+package com.rafaelds.swapi.data.model.vehicles
 
 import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
 import com.rafaelds.swapi.data.model.DtoToModelMapper
@@ -6,12 +6,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StarshipsDtoToStarshipListMapper @Inject constructor() : DtoToModelMapper<StarshipsDTO, List<Starship>> {
-    override fun convert(dto: StarshipsDTO): List<Starship> {
-        return dto.results.map { starship ->
-            val regexMatch = FIND_ID_REGEX.toRegex().find(starship.url)
-            with(starship) {
-                Starship(
+class VehiclesDtoToVehicleListMapper @Inject constructor() : DtoToModelMapper<VehiclesDTO, List<Vehicle>> {
+    override fun convert(dto: VehiclesDTO): List<Vehicle> {
+        return dto.results.map { vehicle ->
+            val regexMatch = FIND_ID_REGEX.toRegex().find(vehicle.url)
+            with(vehicle) {
+                Vehicle(
                     id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
                     name = name,
                     appUri = url.toSwapiSchema(),
@@ -20,21 +20,19 @@ class StarshipsDtoToStarshipListMapper @Inject constructor() : DtoToModelMapper<
                     consumables = consumables,
                     costInCredits = cost_in_credits,
                     crew = crew,
-                    hyperdriveRating = hyperdrive_rating,
                     length = length,
                     manufacturer = manufacturer,
                     maxAtmoshperingSpeed = max_atmosphering_speed,
-                    MGLT = MGLT,
                     model = model,
                     passengers = passengers,
                     pilots = listOf(),
-                    starshipClass = starship_class
+                    vehicleClass = vehicle_class
                 )
             }
         }
     }
 
     companion object {
-        private const val FIND_ID_REGEX = """(?:starships/)(\d+)"""
+        private const val FIND_ID_REGEX = """(?:vehicles/)(\d+)"""
     }
 }
