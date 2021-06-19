@@ -3,7 +3,7 @@ package com.rafaelds.swapi.data.api
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 
-object ApiUtils {
+object ApiStringUtils {
     fun String.toSwapiSchema(): String {
         if (contains("https://")) {
             return replace("https", "swapi")

@@ -8,7 +8,7 @@ import android.widget.GridView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.rafaelds.swapi.R
-import com.rafaelds.swapi.ui.main.NavigationUtils.navigateSafe
+import com.rafaelds.swapi.ui.utils.NavigationUtils.navigateSafe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

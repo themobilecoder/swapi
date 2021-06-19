@@ -1,7 +1,7 @@
 package com.rafaelds.swapi.data.api.people
 
-import com.rafaelds.swapi.data.api.ApiUtils.extractYear
-import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
+import com.rafaelds.swapi.data.api.ApiStringUtils.extractYear
+import com.rafaelds.swapi.data.api.ApiStringUtils.toSwapiSchema
 import com.rafaelds.swapi.data.api.films.FilmRemoteService
 import com.rafaelds.swapi.data.api.planets.PlanetRemoteService
 import com.rafaelds.swapi.data.api.species.SpecieRemoteService

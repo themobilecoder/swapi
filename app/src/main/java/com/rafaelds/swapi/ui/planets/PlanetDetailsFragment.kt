@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.model.ViewState
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.databinding.FragmentPlanetDetailsBinding
-import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
-import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
 import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

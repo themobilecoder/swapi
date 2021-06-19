@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.ui
+package com.rafaelds.swapi.ui.utils
 
 import android.content.Intent
 import android.net.Uri

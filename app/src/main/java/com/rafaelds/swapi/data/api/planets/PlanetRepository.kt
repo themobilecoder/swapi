@@ -1,8 +1,8 @@
 package com.rafaelds.swapi.data.api.planets
 
 import androidx.paging.ExperimentalPagingApi
-import com.rafaelds.swapi.data.api.ApiUtils.extractYear
-import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
+import com.rafaelds.swapi.data.api.ApiStringUtils.extractYear
+import com.rafaelds.swapi.data.api.ApiStringUtils.toSwapiSchema
 import com.rafaelds.swapi.data.api.films.FilmRemoteService
 import com.rafaelds.swapi.data.api.people.PersonRemoteService
 import com.rafaelds.swapi.data.model.LinksData

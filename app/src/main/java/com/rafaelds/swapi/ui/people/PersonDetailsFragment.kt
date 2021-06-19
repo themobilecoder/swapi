@@ -17,8 +17,8 @@ import com.rafaelds.swapi.data.model.ViewState
 import com.rafaelds.swapi.data.model.ViewState.State.*
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.databinding.FragmentPersonDetailsBinding
-import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
-import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
 import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

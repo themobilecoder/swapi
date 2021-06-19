@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.ui.BaseListFragment
-import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi

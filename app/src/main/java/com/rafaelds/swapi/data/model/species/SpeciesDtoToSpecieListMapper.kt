@@ -1,6 +1,6 @@
 package com.rafaelds.swapi.data.model.species
 
-import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
+import com.rafaelds.swapi.data.api.ApiStringUtils.toSwapiSchema
 import com.rafaelds.swapi.data.model.DtoToModelMapper
 import javax.inject.Inject
 import javax.inject.Singleton

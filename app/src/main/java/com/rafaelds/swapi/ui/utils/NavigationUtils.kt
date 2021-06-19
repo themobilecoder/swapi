@@ -1,4 +1,4 @@
-package com.rafaelds.swapi.ui.main
+package com.rafaelds.swapi.ui.utils
 
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections

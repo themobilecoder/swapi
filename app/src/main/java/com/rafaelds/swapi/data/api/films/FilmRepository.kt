@@ -1,7 +1,7 @@
 package com.rafaelds.swapi.data.api.films
 
-import com.rafaelds.swapi.data.api.ApiUtils.toReadableDate
-import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
+import com.rafaelds.swapi.data.api.ApiStringUtils.toReadableDate
+import com.rafaelds.swapi.data.api.ApiStringUtils.toSwapiSchema
 import com.rafaelds.swapi.data.api.people.PersonRemoteService
 import com.rafaelds.swapi.data.api.planets.PlanetRemoteService
 import com.rafaelds.swapi.data.api.species.SpecieRemoteService
