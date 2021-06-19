@@ -1,7 +1,6 @@
 package com.rafaelds.swapi.data.model.vehicles
 
-import com.rafaelds.swapi.data.model.films.FilmData
-import com.rafaelds.swapi.data.model.people.PersonData
+import com.rafaelds.swapi.data.model.LinksData
 
 data class Vehicle(
     val id: Int,
@@ -17,6 +16,6 @@ data class Vehicle(
     val maxAtmoshperingSpeed: String,
     val cargoCapacity: String,
     val consumables: String,
-    val films: List<FilmData> = listOf(),
-    val pilots: List<PersonData> = listOf(),
+    val films: List<LinksData> = listOf(),
+    val pilots: List<LinksData> = listOf(),
 )

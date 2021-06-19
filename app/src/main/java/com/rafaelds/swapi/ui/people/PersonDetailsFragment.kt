@@ -5,14 +5,22 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.rafaelds.swapi.data.model.ViewState
 import com.rafaelds.swapi.data.model.ViewState.State.*
+import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.databinding.FragmentPersonDetailsBinding
 import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,6 +33,11 @@ class PersonDetailsFragment : Fragment() {
 
     private val viewModel: PersonDetailViewModel by viewModels()
     private val args: PersonDetailsFragmentArgs by navArgs()
+
+    private lateinit var filmsAdapter: LinksAdapter
+    private lateinit var starshipsAdapter: LinksAdapter
+    private lateinit var vehiclesAdapter: LinksAdapter
+    private lateinit var speciesAdapter: LinksAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,52 +54,112 @@ class PersonDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.screenState.observe(viewLifecycleOwner) { state ->
-            when (state.state) {
-                SUCCESS -> {
-                    binding.container.visibility = View.VISIBLE
-                    binding.offline.visibility = View.GONE
-                    binding.loadingSpinner.visibility = View.GONE
-                    binding.refreshLayout.isRefreshing = false
-                    state.data?.let { person ->
-                        binding.name.text = person.name.safeCapitalize()
-                        binding.eyeColor.text = person.eyeColor.safeCapitalize()
-                        binding.hairColor.text = person.hairColor.safeCapitalize()
-                        binding.skinColor.text = person.skinColor.safeCapitalize()
-                        val homeData = person.planetData
-                        homeData?.let { _ ->
-                            binding.homeworld.text = homeData.name
-                            binding.homeworld.setOnClickListener {
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(homeData.url))
-                                startActivity(intent)
-                            }
-                        }
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
+            viewModel.fetchPersonDetails(args.id)
+        }
+        filmsAdapter = LinksAdapter(openScreenOnUrl())
+        starshipsAdapter = LinksAdapter(openScreenOnUrl())
+        vehiclesAdapter = LinksAdapter(openScreenOnUrl())
+        speciesAdapter = LinksAdapter(openScreenOnUrl())
+        setupLinksAdapter(starshipsAdapter, binding.starshipsList)
+        setupLinksAdapter(filmsAdapter, binding.filmList)
+        setupLinksAdapter(vehiclesAdapter, binding.vehiclesList)
+        setupLinksAdapter(speciesAdapter, binding.speciesList)
 
-                        binding.mass.text = person.mass
-                        binding.height.text = person.height
-                        binding.gender.text = person.gender.safeCapitalize()
-                    }
-                }
-                LOADING -> {
-                    binding.offline.visibility = View.GONE
-                    binding.loadingSpinner.visibility = View.VISIBLE
-                }
-                ERROR -> {
-                    binding.container.visibility = View.GONE
-                    binding.offline.visibility = View.VISIBLE
-                    binding.loadingSpinner.visibility = View.GONE
-                    binding.refreshLayout.isRefreshing = false
-                }
-                IDLE -> {
-                    binding.container.visibility = View.GONE
-                }
-            }
+
+        viewModel.screenState.observe(viewLifecycleOwner) { state ->
+            handleViewState(state)
         }
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.fetchPersonDetails(args.id)
+    }
+
+    private fun openScreenOnUrl() = { url: String ->
+        startActivityWithLink(url)
+    }
+
+    private fun setupLinksAdapter(linksAdapter: LinksAdapter, recyclerView: RecyclerView) {
+        with(recyclerView) {
+            adapter = linksAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = DefaultItemAnimator()
+        }
+    }
+
+    private fun handleViewState(state: ViewState<Person>) {
+        with(binding) {
+            when (state.state) {
+                SUCCESS -> {
+                    container.visibility = VISIBLE
+                    offline.visibility = GONE
+                    loadingSpinner.visibility = GONE
+                    refreshLayout.isRefreshing = false
+                    state.data?.let { person ->
+                        name.text = person.name.safeCapitalize()
+                        eyeColor.text = person.eyeColor.safeCapitalize()
+                        hairColor.text = person.hairColor.safeCapitalize()
+                        skinColor.text = person.skinColor.safeCapitalize()
+                        person.planetData?.let { home ->
+                            homeworld.text = home.name
+                            homeworld.setOnClickListener {
+                                startActivityWithLink(home.url)
+                            }
+                        }
+                        mass.text = person.mass
+                        height.text = person.height
+                        gender.text = person.gender.safeCapitalize()
+                        if (person.films.isEmpty()) {
+                            filmsSection.visibility = GONE
+                        } else {
+                            filmsSection.visibility = VISIBLE
+                            filmsAdapter.submitList(person.films)
+                        }
+                        if (person.starships.isEmpty()) {
+                            starshipsSection.visibility = GONE
+                        } else {
+                            starshipsSection.visibility = VISIBLE
+                            starshipsAdapter.submitList(person.starships)
+                        }
+                        if (person.vehicles.isEmpty()) {
+                            vehiclessSection.visibility = GONE
+                        } else {
+                            vehiclessSection.visibility = VISIBLE
+                            vehiclesAdapter.submitList(person.vehicles)
+                        }
+                        if (person.species.isEmpty()) {
+                            speciesSection.visibility = GONE
+                        } else {
+                            speciesSection.visibility = VISIBLE
+                            speciesAdapter.submitList(person.species)
+                        }
+                    }
+                }
+                LOADING -> {
+                    offline.visibility = GONE
+                    loadingSpinner.visibility = VISIBLE
+                }
+                ERROR -> {
+                    container.visibility = GONE
+                    offline.visibility = VISIBLE
+                    loadingSpinner.visibility = GONE
+                    refreshLayout.isRefreshing = false
+                }
+                IDLE -> {
+                    refreshLayout.isRefreshing = false
+                    container.visibility = GONE
+                }
+            }
+        }
+
+    }
+
+    private fun startActivityWithLink(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
 }

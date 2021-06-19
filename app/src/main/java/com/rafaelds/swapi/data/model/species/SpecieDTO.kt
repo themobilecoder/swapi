@@ -13,7 +13,7 @@ data class SpecieDTO(
     val hair_colors: String,
     val skin_colors: String,
     val language: String,
-    val homeworld: String,
+    val homeworld: String?,
     val films: List<String>,
     val people: List<String>,
     val url: String,

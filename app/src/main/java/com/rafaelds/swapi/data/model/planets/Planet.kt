@@ -1,7 +1,6 @@
 package com.rafaelds.swapi.data.model.planets
 
-import com.rafaelds.swapi.data.model.films.FilmData
-import com.rafaelds.swapi.data.model.people.PersonData
+import com.rafaelds.swapi.data.model.LinksData
 
 data class Planet(
     val id: Int,
@@ -13,7 +12,7 @@ data class Planet(
     val terrain: String,
     val surfaceWater: String,
     val population: String,
-    val residents: List<PersonData> = listOf(),
-    val films: List<FilmData> = listOf(),
+    val residents: List<LinksData> = listOf(),
+    val films: List<LinksData> = listOf(),
     val appUri: String
 )

@@ -1,17 +1,15 @@
 package com.rafaelds.swapi.data.api.people
 
+import com.rafaelds.swapi.data.api.ApiUtils.extractYear
 import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
 import com.rafaelds.swapi.data.api.films.FilmRemoteService
 import com.rafaelds.swapi.data.api.planets.PlanetRemoteService
 import com.rafaelds.swapi.data.api.species.SpecieRemoteService
 import com.rafaelds.swapi.data.api.starships.StarshipRemoteService
 import com.rafaelds.swapi.data.api.vehicles.VehicleRemoteService
-import com.rafaelds.swapi.data.model.films.FilmData
+import com.rafaelds.swapi.data.model.LinksData
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.model.planets.PlanetData
-import com.rafaelds.swapi.data.model.species.SpecieData
-import com.rafaelds.swapi.data.model.starships.StarshipData
-import com.rafaelds.swapi.data.model.vehicles.VehicleData
 import com.rafaelds.swapi.data.network.NetworkConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -57,10 +55,10 @@ class PersonRepository @Inject constructor(
                     birthYear = personDTO.birth_year,
                     gender = personDTO.gender,
                     planetData = homeDeferred.await()?.let { PlanetData(name = it.name, url = it.url.toSwapiSchema()) },
-                    films = filmsDeferred.await().map { FilmData(it.title, it.url.toSwapiSchema()) },
-                    species = speciesDeferred.await().map { SpecieData(it.name, it.url.toSwapiSchema()) },
-                    starships = starshipsDeferred.await().map { StarshipData(it.name, it.url.toSwapiSchema()) },
-                    vehicles = vehiclesDeferred.await().map { VehicleData(it.name, it.url.toSwapiSchema()) }
+                    films = filmsDeferred.await().map { LinksData(it.title, it.release_date.extractYear(), it.url.toSwapiSchema()) },
+                    species = speciesDeferred.await().map { LinksData(it.name, it.classification, it.url.toSwapiSchema()) },
+                    starships = starshipsDeferred.await().map { LinksData(it.name, it.starship_class, it.url.toSwapiSchema()) },
+                    vehicles = vehiclesDeferred.await().map { LinksData(it.name, it.vehicle_class, it.url.toSwapiSchema()) }
                 )
             }
 

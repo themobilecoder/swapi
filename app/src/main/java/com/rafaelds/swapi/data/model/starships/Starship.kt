@@ -1,7 +1,6 @@
 package com.rafaelds.swapi.data.model.starships
 
-import com.rafaelds.swapi.data.model.films.FilmData
-import com.rafaelds.swapi.data.model.people.PersonData
+import com.rafaelds.swapi.data.model.LinksData
 
 data class Starship(
     val id: Int,
@@ -19,6 +18,6 @@ data class Starship(
     val MGLT: String,
     val cargoCapacity: String,
     val consumables: String,
-    val films: List<FilmData> = listOf(),
-    val pilots: List<PersonData> = listOf(),
+    val films: List<LinksData> = listOf(),
+    val pilots: List<LinksData> = listOf(),
 )

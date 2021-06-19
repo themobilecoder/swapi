@@ -9,9 +9,9 @@ abstract class BaseListAdapter <T : Any> constructor( private val onClick: (url:
     PagingDataAdapter<T, BaseListAdapter.BaseListViewHolder<T>>(diffCallback) {
 
     override fun onBindViewHolder(holder: BaseListViewHolder<T>, position: Int) {
-        val person = getItem(position)
-        person?.let {
-            holder.setData(person, onClick)
+        val model = getItem(position)
+        model?.let {
+            holder.setData(model, onClick)
         }
     }
 

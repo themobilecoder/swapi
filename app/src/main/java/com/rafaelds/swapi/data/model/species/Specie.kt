@@ -1,7 +1,6 @@
 package com.rafaelds.swapi.data.model.species
 
-import com.rafaelds.swapi.data.model.films.FilmData
-import com.rafaelds.swapi.data.model.people.PersonData
+import com.rafaelds.swapi.data.model.LinksData
 import com.rafaelds.swapi.data.model.planets.PlanetData
 
 data class Specie(
@@ -17,6 +16,6 @@ data class Specie(
     val skinColors: String,
     val language: String,
     val homeworld: PlanetData? = null,
-    val films: List<FilmData> = listOf(),
-    val people: List<PersonData> = listOf(),
+    val films: List<LinksData> = listOf(),
+    val people: List<LinksData> = listOf(),
 )
