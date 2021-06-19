@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.data
 
+import com.rafaelds.swapi.data.model.films.Film
+import com.rafaelds.swapi.data.model.films.FilmDTO
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.model.people.PersonDTO
 import com.rafaelds.swapi.data.model.planets.Planet
@@ -58,5 +60,34 @@ object TestData {
         residents = listOf("resident"),
         films = listOf("film"),
         url = "http://planets/42"
+    )
+
+    val FILM_DTO = FilmDTO(
+        title = "star wars",
+        episode_id = "2",
+        director = "director",
+        producer = "producer",
+        releaseDate = "2010",
+        species = listOf(),
+        starships = listOf(),
+        vehicles = listOf(),
+        characters = listOf(),
+        planets = listOf(),
+        url = "http://films/42"
+    )
+
+    val FILM = Film(
+        title = "star wars",
+        episode = "2",
+        director = "director",
+        producer = "producer",
+        releaseDate = "2010",
+        species = listOf(),
+        starships = listOf(),
+        vehicles = listOf(),
+        characters = listOf(),
+        planets = listOf(),
+        appUri = "swapi://films/42",
+        id = 42
     )
 }

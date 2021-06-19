@@ -1,0 +1,18 @@
+package com.rafaelds.swapi.data.model.films
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class FilmDTO(
+    val title: String,
+    val episode_id: String,
+    val director: String,
+    val producer: String,
+    val releaseDate: String,
+    val species: List<String>,
+    val starships: List<String>,
+    val vehicles: List<String>,
+    val characters: List<String>,
+    val planets: List<String>,
+    val url: String
+)
