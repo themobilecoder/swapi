@@ -8,6 +8,7 @@ import android.widget.GridView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.rafaelds.swapi.R
+import com.rafaelds.swapi.ui.main.NavigationUtils.navigateSafe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,27 +32,27 @@ class CategoryFragment : Fragment() {
     private fun setupCategoriesAdapter() = CategoriesAdapter(
         requireContext(), arrayOf(
             Category(resources.getString(R.string.people)) {
-                findNavController().navigate(
+                findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToPersonListFragment()
                 )
             },
             Category(resources.getString(R.string.planets)) {
-                findNavController().navigate(
+                findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToPlanetListFragment()
                 )
             },
             Category(resources.getString(R.string.films)) {
-                findNavController().navigate(
+                findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToFilmListDest()
                 )
             },
             Category(resources.getString(R.string.species)) {
-                findNavController().navigate(
+                findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToSpecieListDest()
                 )
             },
             Category(resources.getString(R.string.starships)) {
-                findNavController().navigate(
+                findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToStarshipListDest()
                 )
             },
