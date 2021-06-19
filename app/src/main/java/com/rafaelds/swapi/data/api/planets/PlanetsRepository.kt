@@ -1,7 +1,8 @@
 package com.rafaelds.swapi.data.api.planets
 
-import androidx.lifecycle.LiveData
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.rafaelds.swapi.data.api.BaseRepository
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.data.model.planets.PlanetDtoToPlanetListMapper
@@ -17,14 +18,14 @@ class PlanetsRepository @Inject constructor(
     private val planetsDtoToPlanetListMapper: PlanetsDtoToPlanetListMapper,
     private val planetDtoToPlanetListMapper: PlanetDtoToPlanetListMapper
 ) : BaseRepository {
-    fun getPlanetList(): LiveData<PagingData<Planet>> {
+    fun getPlanetList(): Pager<Int, Planet> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 enablePlaceholders = false,
             ),
             pagingSourceFactory = { PlanetsPagingSource(repositoryUrl, planetsRemoteService, planetsDtoToPlanetListMapper) }
-        ).liveData
+        )
     }
 
     suspend fun getPlanetDetails(id: Int): Planet {

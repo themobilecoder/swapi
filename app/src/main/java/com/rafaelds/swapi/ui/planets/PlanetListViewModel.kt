@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.rafaelds.swapi.data.api.planets.PlanetsRepository
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.ui.views.BaseListViewModel
@@ -17,7 +18,7 @@ class PlanetListViewModel @Inject constructor(private val planetsRepository: Pla
     BaseListViewModel<Planet>() {
 
     override fun fetchList(): LiveData<PagingData<Planet>> {
-        return planetsRepository.getPlanetList().cachedIn(viewModelScope)
+        return planetsRepository.getPlanetList().liveData.cachedIn(viewModelScope)
     }
 
 }

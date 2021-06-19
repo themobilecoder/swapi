@@ -1,7 +1,8 @@
 package com.rafaelds.swapi.data.api.people
 
-import androidx.lifecycle.LiveData
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.network.NetworkConfig
@@ -16,14 +17,14 @@ class PeopleRepository
     private val networkConfig: NetworkConfig,
     private val peopleDtoToPersonListMapper: PeopleDtoToPersonListMapper
 ) {
-    fun getPeopleList(): LiveData<PagingData<Person>> {
+    fun getPeopleList(): Pager<Int, Person> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
                 enablePlaceholders = false,
             ),
             pagingSourceFactory = { PeoplePagingSource(peopleRepositoryUrl, peopleRemoteService, peopleDtoToPersonListMapper) }
-        ).liveData
+        )
     }
 
     private val peopleRepositoryUrl: String

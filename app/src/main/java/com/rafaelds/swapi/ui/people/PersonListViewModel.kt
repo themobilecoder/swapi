@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.rafaelds.swapi.data.api.people.PeopleRepository
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.ui.views.BaseListViewModel
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class PersonListViewModel @Inject constructor(private val peopleRepository: PeopleRepository) :
     BaseListViewModel<Person>() {
     override fun fetchList(): LiveData<PagingData<Person>> {
-        return peopleRepository.getPeopleList().cachedIn(viewModelScope)
+        return peopleRepository.getPeopleList().liveData.cachedIn(viewModelScope)
     }
 
 }
