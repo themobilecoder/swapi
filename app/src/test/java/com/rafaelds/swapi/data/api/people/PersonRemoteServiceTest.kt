@@ -2,6 +2,7 @@ package com.rafaelds.swapi.data.api.people
 
 import com.nhaarman.mockitokotlin2.*
 import com.rafaelds.swapi.CoroutineTest
+import com.rafaelds.swapi.data.TestData.PERSON_DTO
 import com.rafaelds.swapi.data.model.people.PersonDTO
 import com.rafaelds.swapi.data.network.NetworkRequestHelper
 import com.rafaelds.swapi.data.network.RemoteService
@@ -20,7 +21,7 @@ class PersonRemoteServiceTest : CoroutineTest() {
     private val personRemoteService = PersonRemoteService(networkRequestHelper)
 
     @Test
-    fun `should return correct data on fetch person`() {
+    fun `should fetch correct data`() {
         runBlocking {
             val networkResponse = NetworkRequestHelper.NetworkResponse.Success(PERSON_DTO)
             whenever(networkRequestHelper.request(any(), eq(PersonDTO.serializer()))).thenReturn(networkResponse)
@@ -41,12 +42,6 @@ class PersonRemoteServiceTest : CoroutineTest() {
             personRemoteService.fetchData("someuri")
 
         }
-    }
-
-    companion object {
-
-        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-
     }
 
 }
