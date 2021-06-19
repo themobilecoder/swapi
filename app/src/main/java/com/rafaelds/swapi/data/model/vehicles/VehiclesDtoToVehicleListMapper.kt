@@ -15,7 +15,6 @@ class VehiclesDtoToVehicleListMapper @Inject constructor() : DtoToModelMapper<Ve
                     id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
                     name = name,
                     appUri = url.toSwapiSchema(),
-                    films = listOf(),
                     cargoCapacity = cargo_capacity,
                     consumables = consumables,
                     costInCredits = cost_in_credits,
@@ -25,7 +24,6 @@ class VehiclesDtoToVehicleListMapper @Inject constructor() : DtoToModelMapper<Ve
                     maxAtmoshperingSpeed = max_atmosphering_speed,
                     model = model,
                     passengers = passengers,
-                    pilots = listOf(),
                     vehicleClass = vehicle_class
                 )
             }

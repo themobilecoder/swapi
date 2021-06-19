@@ -6,6 +6,8 @@ import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.model.people.PersonDTO
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.data.model.planets.PlanetDTO
+import com.rafaelds.swapi.data.model.species.Specie
+import com.rafaelds.swapi.data.model.species.SpecieDTO
 import com.rafaelds.swapi.data.model.starships.Starship
 import com.rafaelds.swapi.data.model.starships.StarshipDTO
 import com.rafaelds.swapi.data.model.vehicles.Vehicle
@@ -166,6 +168,38 @@ object TestData {
         films = listOf(),
         pilots = listOf(),
         appUri = "swapi://vehicles/42",
+        id = 4
+    )
+
+    val SPECIE_DTO = SpecieDTO(
+        name = "Vehicle",
+        films = listOf(),
+        url = "http://vehicles/42",
+        language = "language",
+        homeworld = "http://planets/2",
+        designation = "designation",
+        classification = "classification",
+        average_height = "50",
+        average_lifespan = "100",
+        eye_colors = "blue",
+        hair_colors = "black",
+        skin_colors = "fair",
+        people = listOf()
+    )
+
+    val SPECIE = Specie(
+        name = "Vehicle",
+        films = listOf(),
+        language = "language",
+        designation = "designation",
+        classification = "classification",
+        averageHeight = "50",
+        averageLifespan = "100",
+        eyeColors = "blue",
+        hairColors = "black",
+        skinColors = "fair",
+        people = listOf(),
+        appUri = "swapi://species/42",
         id = 4
     )
 }
