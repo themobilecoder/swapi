@@ -157,7 +157,7 @@
                         android:background="?colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/residents_list"
+                        android:id="@+id/characters_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false" />

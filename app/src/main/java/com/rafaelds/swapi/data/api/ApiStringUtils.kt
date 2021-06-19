@@ -26,7 +26,7 @@ object ApiStringUtils {
     @SuppressLint("SimpleDateFormat")
     fun String.toReadableDate(): String {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val yearFormat = SimpleDateFormat("MMMMM dd, yyyy")
+        val yearFormat = SimpleDateFormat("MMMM dd, yyyy")
         return try {
             yearFormat.format(simpleDateFormat.parse(this))
         } catch (e: Exception) {
