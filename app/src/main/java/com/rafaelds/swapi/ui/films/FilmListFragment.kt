@@ -1,11 +1,10 @@
 package com.rafaelds.swapi.ui.films
 
-import android.content.Intent
-import android.net.Uri
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
 import com.rafaelds.swapi.data.model.films.Film
 import com.rafaelds.swapi.ui.BaseListFragment
+import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
@@ -16,8 +15,7 @@ class FilmListFragment : BaseListFragment<Film, FilmListViewModel, FilmListAdapt
 
     override fun createAdapter(): FilmListAdapter {
         return FilmListAdapter { planetUri ->
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(planetUri))
-            startActivity(intent)
+            startActivityWithLink(planetUri)
         }
     }
 

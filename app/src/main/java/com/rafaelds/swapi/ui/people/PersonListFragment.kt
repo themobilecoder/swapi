@@ -1,11 +1,10 @@
 package com.rafaelds.swapi.ui.people
 
-import android.content.Intent
-import android.net.Uri
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.ui.BaseListFragment
+import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
@@ -16,8 +15,7 @@ class PersonListFragment : BaseListFragment<Person, PersonListViewModel, PersonL
 
     override fun createAdapter(): PersonListAdapter {
         return PersonListAdapter { uri ->
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-            startActivity(intent)
+            startActivityWithLink(uri)
         }
     }
 }

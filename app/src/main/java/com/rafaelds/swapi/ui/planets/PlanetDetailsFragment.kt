@@ -1,7 +1,5 @@
 package com.rafaelds.swapi.ui.planets
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +15,7 @@ import com.rafaelds.swapi.data.model.ViewState
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.databinding.FragmentPlanetDetailsBinding
 import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
 import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -128,11 +127,5 @@ class PlanetDetailsFragment : Fragment() {
         }
 
     }
-
-    private fun startActivityWithLink(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
-    }
-
 
 }

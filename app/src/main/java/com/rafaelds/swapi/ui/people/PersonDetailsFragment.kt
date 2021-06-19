@@ -1,7 +1,5 @@
 package com.rafaelds.swapi.ui.people
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +18,7 @@ import com.rafaelds.swapi.data.model.ViewState.State.*
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.databinding.FragmentPersonDetailsBinding
 import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.ExtensionUtil.startActivityWithLink
 import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -155,11 +154,6 @@ class PersonDetailsFragment : Fragment() {
             }
         }
 
-    }
-
-    private fun startActivityWithLink(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
     }
 
 }
