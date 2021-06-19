@@ -29,4 +29,52 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+    <fragment
+        android:id="@+id/vehicleListFragment"
+        android:name="com.rafaelds.swapi.ui.vehicles.VehicleDetailsFragment"
+        tools:layout="@layout/fragment_vehicle_details"
+        android:label="VehicleDetailsFragment">
+        <deepLink
+            app:uri="swapi://localhost:8000/api/vehicles/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmDetailsFragment"
+        android:name="com.rafaelds.swapi.ui.films.FilmDetailsFragment"
+        tools:layout="@layout/fragment_film_details"
+        android:label="FilmDetailsFragment">
+        <deepLink
+            app:uri="swapi://localhost:8000/api/films/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/starshipDetailsFragment"
+        android:name="com.rafaelds.swapi.ui.starships.StarshipDetailsFragment"
+        tools:layout="@layout/fragment_starship_details"
+        android:label="StarshipDetailsFragment">
+        <deepLink
+            app:uri="swapi://localhost:8000/api/starships/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/specieDetailsFragment"
+        android:name="com.rafaelds.swapi.ui.species.SpecieDetailsFragment"
+        tools:layout="@layout/fragment_specie_details"
+        android:label="SpecieDetailsFragment">
+        <deepLink
+            app:uri="swapi://localhost:8000/api/species/{id}/" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

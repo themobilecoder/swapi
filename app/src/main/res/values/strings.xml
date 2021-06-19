@@ -27,4 +27,8 @@
     <string name="profile">Profile</string>
     <string name="parenthesis">(%1$s)</string>
     <string name="characters">Characters</string>
+    <string name="director">Director</string>
+    <string name="producer">Producer</string>
+    <string name="release_date">Release Date</string>
+    <string name="about">About</string>
 </resources>
