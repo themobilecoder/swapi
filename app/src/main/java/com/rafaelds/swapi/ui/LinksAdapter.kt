@@ -24,7 +24,7 @@ class LinksAdapter(private val onClick: (url: String) -> Unit) : ListAdapter<Lin
 
         fun bind(model: LinksData, onClick: (url: String) -> Unit) {
             binding.title.text = model.name
-            binding.description.text = binding.root.context.getString(R.string.parenthesis, model.description)
+            binding.description.text = model.description?.let { binding.root.context.getString(R.string.parenthesis, it) } ?: ""
             binding.root.setOnClickListener {
                 onClick(model.url)
             }

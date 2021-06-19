@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.ui.planets
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.data.model.ViewState
+import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.databinding.FragmentPlanetDetailsBinding
 import com.rafaelds.swapi.ui.ExtensionUtil.safeCapitalize
+import com.rafaelds.swapi.ui.LinksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
@@ -22,6 +29,9 @@ class PlanetDetailsFragment : Fragment() {
     private val viewModel: PlanetDetailsViewModel by viewModels()
     private val args: PlanetDetailsFragmentArgs by navArgs()
 
+    private lateinit var residentsAdapter: LinksAdapter
+    private lateinit var filmsAdapter: LinksAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,40 +40,24 @@ class PlanetDetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.refreshLayout.setOnRefreshListener {
+            binding.refreshLayout.isRefreshing = false
+            viewModel.fetchPlanetDetails(args.id)
+        }
+        filmsAdapter = LinksAdapter(openScreenOnUrl())
+        residentsAdapter = LinksAdapter(openScreenOnUrl())
+        setupLinksAdapter(residentsAdapter, binding.residentsList)
+        setupLinksAdapter(filmsAdapter, binding.filmList)
+
         viewModel.screenState.observe(viewLifecycleOwner) { state ->
-            when (state.state) {
-                ViewState.State.SUCCESS -> {
-                    binding.container.visibility = View.VISIBLE
-                    binding.offline.visibility = View.GONE
-                    binding.loadingSpinner.visibility = View.GONE
-                    binding.refreshLayout.isRefreshing = false
-                    state.data?.let {
-                        binding.name.text = it.name.safeCapitalize()
-                        binding.diameter.text = it.diameter
-                        binding.terrain.text = it.terrain
-                        binding.surfaceWater.text = it.surfaceWater
-                        binding.rotationPeriod.text = it.rotationPeriod
-                        binding.orbitalPeriod.text = it.orbitalPeriod
-                        binding.population.text = it.population
-                        binding.gravity.text = it.gravity
-                    }
-                }
-                ViewState.State.LOADING -> {
-                    binding.offline.visibility = View.GONE
-                    binding.loadingSpinner.visibility = View.VISIBLE
-                }
-                ViewState.State.ERROR -> {
-                    binding.container.visibility = View.GONE
-                    binding.offline.visibility = View.VISIBLE
-                    binding.loadingSpinner.visibility = View.GONE
-                    binding.refreshLayout.isRefreshing = false
-                }
-                ViewState.State.IDLE -> {
-                    binding.container.visibility = View.GONE
-                }
-            }
+            handleViewState(state)
         }
     }
 
@@ -72,9 +66,72 @@ class PlanetDetailsFragment : Fragment() {
         viewModel.fetchPlanetDetails(args.id)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun openScreenOnUrl() = { url: String ->
+        startActivityWithLink(url)
+    }
+
+    private fun setupLinksAdapter(linksAdapter: LinksAdapter, recyclerView: RecyclerView) {
+        with(recyclerView) {
+            adapter = linksAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            itemAnimator = DefaultItemAnimator()
+        }
+    }
+
+    private fun handleViewState(state: ViewState<Planet>) {
+        with(binding) {
+            when (state.state) {
+                ViewState.State.SUCCESS -> {
+                    container.visibility = View.VISIBLE
+                    offline.visibility = View.GONE
+                    loadingSpinner.visibility = View.GONE
+                    refreshLayout.isRefreshing = false
+                    state.data?.let { planet ->
+                        name.text = planet.name.safeCapitalize()
+                        rotationPeriod.text = planet.rotationPeriod
+                        orbitalPeriod.text = planet.orbitalPeriod
+                        diameter.text = planet.diameter
+                        gravity.text = planet.gravity
+                        terrain.text = planet.terrain
+                        surfaceWater.text = planet.surfaceWater
+                        population.text = planet.population
+
+                        if (planet.films.isEmpty()) {
+                            filmsSection.visibility = View.GONE
+                        } else {
+                            filmsSection.visibility = View.VISIBLE
+                            filmsAdapter.submitList(planet.films)
+                        }
+                        if (planet.residents.isEmpty()) {
+                            residentsSection.visibility = View.GONE
+                        } else {
+                            residentsSection.visibility = View.VISIBLE
+                            residentsAdapter.submitList(planet.residents)
+                        }
+                    }
+                }
+                ViewState.State.LOADING -> {
+                    offline.visibility = View.GONE
+                    loadingSpinner.visibility = View.VISIBLE
+                }
+                ViewState.State.ERROR -> {
+                    container.visibility = View.GONE
+                    offline.visibility = View.VISIBLE
+                    loadingSpinner.visibility = View.GONE
+                    refreshLayout.isRefreshing = false
+                }
+                ViewState.State.IDLE -> {
+                    refreshLayout.isRefreshing = false
+                    container.visibility = View.GONE
+                }
+            }
+        }
+
+    }
+
+    private fun startActivityWithLink(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 
 

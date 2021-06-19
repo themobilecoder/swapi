@@ -26,4 +26,5 @@
     <string name="surface_water">Surface water</string>
     <string name="profile">Profile</string>
     <string name="parenthesis">(%1$s)</string>
+    <string name="characters">Characters</string>
 </resources>
