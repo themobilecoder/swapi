@@ -55,10 +55,10 @@ class PersonRepository @Inject constructor(
                     birthYear = personDTO.birth_year,
                     gender = personDTO.gender,
                     planetData = homeDeferred.await()?.let { PlanetData(name = it.name, url = it.url.toSwapiSchema()) },
-                    films = filmsDeferred.await().map { LinksData(it.title, it.url.toSwapiSchema(), it.release_date.extractYear(),) },
-                    species = speciesDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema(), it.classification) },
-                    starships = starshipsDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema(), it.starship_class) },
-                    vehicles = vehiclesDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema(), it.vehicle_class) }
+                    films = filmsDeferred.await().map { LinksData(it.title, it.url.toSwapiSchema(), it.release_date.extractYear()) },
+                    species = speciesDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) },
+                    starships = starshipsDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) },
+                    vehicles = vehiclesDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) }
                 )
             }
 
