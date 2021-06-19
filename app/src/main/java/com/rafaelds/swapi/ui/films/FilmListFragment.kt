@@ -1,21 +1,24 @@
 package com.rafaelds.swapi.ui.films
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.rafaelds.swapi.R
+import android.content.Intent
+import android.net.Uri
+import androidx.fragment.app.viewModels
+import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.data.model.films.Film
+import com.rafaelds.swapi.ui.BaseListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
-class FilmListFragment : Fragment() {
+class FilmListFragment : BaseListFragment<Film, FilmListViewModel, FilmListAdapter>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_list, container, false)
+    override val viewModel: FilmListViewModel by viewModels()
+
+    override fun createAdapter(): FilmListAdapter {
+        return FilmListAdapter { planetUri ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(planetUri))
+            startActivity(intent)
+        }
     }
 
 }

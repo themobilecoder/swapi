@@ -6,7 +6,7 @@ data class Film(
     val id: Int,
     val appUri: String,
     val title: String,
-    val episode: String,
+    val episode: String? = null,
     val director: String,
     val producer: String,
     val releaseDate: String,
