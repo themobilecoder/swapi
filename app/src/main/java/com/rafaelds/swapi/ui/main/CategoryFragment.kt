@@ -31,6 +31,11 @@ class CategoryFragment : Fragment() {
 
     private fun setupCategoriesAdapter() = CategoriesAdapter(
         requireContext(), arrayOf(
+            Category(resources.getString(R.string.films)) {
+                findNavController().navigateSafe(
+                    CategoryFragmentDirections.actionMainDestToFilmListDest()
+                )
+            },
             Category(resources.getString(R.string.people)) {
                 findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToPersonListFragment()
@@ -41,11 +46,6 @@ class CategoryFragment : Fragment() {
                     CategoryFragmentDirections.actionMainDestToPlanetListFragment()
                 )
             },
-            Category(resources.getString(R.string.films)) {
-                findNavController().navigateSafe(
-                    CategoryFragmentDirections.actionMainDestToFilmListDest()
-                )
-            },
             Category(resources.getString(R.string.species)) {
                 findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToSpecieListDest()
@@ -54,6 +54,11 @@ class CategoryFragment : Fragment() {
             Category(resources.getString(R.string.starships)) {
                 findNavController().navigateSafe(
                     CategoryFragmentDirections.actionMainDestToStarshipListDest()
+                )
+            },
+            Category(resources.getString(R.string.vehicles)) {
+                findNavController().navigateSafe(
+                    CategoryFragmentDirections.actionMainDestToVehicleListDest()
                 )
             },
         )

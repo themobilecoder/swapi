@@ -1,21 +1,21 @@
 package com.rafaelds.swapi.ui.starships
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.rafaelds.swapi.R
+import androidx.fragment.app.viewModels
+import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.data.model.starships.Starship
+import com.rafaelds.swapi.ui.BaseListFragment
+import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagingApi
 @AndroidEntryPoint
-class StarshipListFragment : Fragment() {
+class StarshipListFragment : BaseListFragment<Starship, StarshipListViewModel, StarshipListAdapter>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_list, container, false)
+    override val viewModel: StarshipListViewModel by viewModels()
+
+    override fun createAdapter(): StarshipListAdapter {
+        return StarshipListAdapter { starshipUri ->
+            startActivityWithLink(starshipUri)
+        }
     }
-
 }
