@@ -4,6 +4,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.rafaelds.swapi.data.model.DtoToModelMapper
 import com.rafaelds.swapi.data.network.RemoteService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 abstract class BasePagingSource<Value : Any, Dto> constructor(
     private val uri: String,
@@ -22,19 +24,21 @@ abstract class BasePagingSource<Value : Any, Dto> constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Value> {
-        return try {
-            val pageNumber = params.key ?: 1
-            val response = remoteService.fetchData("$uri?page=$pageNumber")
-            val prevKey = getPreviousKey(pageNumber, response)
-            val nextKey = getNextKey(pageNumber, response)
-            val data = mapper.convert(response)
-            LoadResult.Page(
-                data = data,
-                prevKey = prevKey,
-                nextKey = nextKey
-            )
-        } catch (e: Exception) {
-            LoadResult.Error(e)
+        return withContext(Dispatchers.IO) {
+            try {
+                val pageNumber = params.key ?: 1
+                val response = remoteService.fetchData("$uri?page=$pageNumber")
+                val prevKey = getPreviousKey(pageNumber, response)
+                val nextKey = getNextKey(pageNumber, response)
+                val data = mapper.convert(response)
+                LoadResult.Page(
+                    data = data,
+                    prevKey = prevKey,
+                    nextKey = nextKey
+                )
+            } catch (e: Exception) {
+                LoadResult.Error(e)
+            }
         }
     }
 
