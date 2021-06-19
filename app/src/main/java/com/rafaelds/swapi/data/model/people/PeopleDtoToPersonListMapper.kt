@@ -1,5 +1,6 @@
 package com.rafaelds.swapi.data.model.people
 
+import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
 import com.rafaelds.swapi.data.model.DtoToModelMapper
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,15 +13,14 @@ class PeopleDtoToPersonListMapper @Inject constructor() : DtoToModelMapper<Peopl
             Person(
                 id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
                 name = people.name,
-                appUri = people.url.replace("https", "swapi"),
+                appUri = people.url.toSwapiSchema(),
                 height = people.height,
                 mass = people.mass,
                 skinColor = people.skin_color,
                 eyeColor = people.eye_color,
                 hairColor = people.hair_color,
                 birthYear = people.birth_year,
-                home = people.homeworld,
-                gender = people.gender
+                gender = people.gender,
             )
         }
     }

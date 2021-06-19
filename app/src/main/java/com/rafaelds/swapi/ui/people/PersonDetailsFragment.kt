@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.ui.people
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,15 +48,23 @@ class PersonDetailsFragment : Fragment() {
                     binding.offline.visibility = View.GONE
                     binding.loadingSpinner.visibility = View.GONE
                     binding.refreshLayout.isRefreshing = false
-                    state.data?.let {
-                        binding.name.text = it.name.safeCapitalize()
-                        binding.eyeColor.text = it.eyeColor.safeCapitalize()
-                        binding.hairColor.text = it.hairColor.safeCapitalize()
-                        binding.skinColor.text = it.skinColor.safeCapitalize()
-                        binding.homeworld.text = it.home
-                        binding.mass.text = it.mass
-                        binding.height.text = it.height
-                        binding.gender.text = it.gender.safeCapitalize()
+                    state.data?.let { person ->
+                        binding.name.text = person.name.safeCapitalize()
+                        binding.eyeColor.text = person.eyeColor.safeCapitalize()
+                        binding.hairColor.text = person.hairColor.safeCapitalize()
+                        binding.skinColor.text = person.skinColor.safeCapitalize()
+                        val homeData = person.homeData
+                        homeData?.let { _ ->
+                            binding.homeworld.text = homeData.name
+                            binding.homeworld.setOnClickListener {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(homeData.url))
+                                startActivity(intent)
+                            }
+                        }
+
+                        binding.mass.text = person.mass
+                        binding.height.text = person.height
+                        binding.gender.text = person.gender.safeCapitalize()
                     }
                 }
                 LOADING -> {

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.data.api.people.PersonRepository
 import com.rafaelds.swapi.data.model.ViewState
-import com.rafaelds.swapi.data.api.people.PeopleRepository
 import com.rafaelds.swapi.data.model.people.Person
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @ExperimentalPagingApi
 @HiltViewModel
-class PersonDetailViewModel @Inject constructor(private val peopleRepository: PeopleRepository) : ViewModel() {
+class PersonDetailViewModel @Inject constructor(private val personRepository: PersonRepository) : ViewModel() {
 
     val screenState: LiveData<ViewState<Person>> get() = _screenState
     private val _screenState = MutableLiveData<ViewState<Person>>(ViewState.idle())
@@ -24,7 +24,7 @@ class PersonDetailViewModel @Inject constructor(private val peopleRepository: Pe
         viewModelScope.launch {
             _screenState.postValue(ViewState.loading())
             try {
-                val personDetails = peopleRepository.getPersonDetails(id)
+                val personDetails = personRepository.getPersonDetails(id)
                 _screenState.postValue(ViewState.success(personDetails))
             } catch (e: Exception) {
                 _screenState.postValue(ViewState.error())

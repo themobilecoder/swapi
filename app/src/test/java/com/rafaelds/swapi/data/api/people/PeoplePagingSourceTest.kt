@@ -6,6 +6,8 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
+import com.rafaelds.swapi.data.TestData.PERSON
+import com.rafaelds.swapi.data.TestData.PERSON_DTO
 import com.rafaelds.swapi.data.model.people.PeopleDTO
 import com.rafaelds.swapi.data.model.people.PeopleDtoToPersonListMapper
 import com.rafaelds.swapi.data.model.people.Person
@@ -66,8 +68,4 @@ class PeoplePagingSourceTest : CoroutineTest() {
         }
     }
 
-    companion object {
-        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-        private val PERSON = Person(42, "Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-    }
 }

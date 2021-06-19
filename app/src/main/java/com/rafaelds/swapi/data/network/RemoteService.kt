@@ -1,5 +1,6 @@
 package com.rafaelds.swapi.data.network
 
+import android.util.Log
 import kotlinx.serialization.KSerializer
 
 
@@ -17,6 +18,7 @@ abstract class RemoteService<Dto> constructor(private val networkRequestHelper: 
                 response.data
             }
             else -> {
+                Log.e("SWAPI", (response as NetworkRequestHelper.NetworkResponse.Error).message)
                 throw RemoteServiceException()
             }
         }

@@ -1,5 +1,6 @@
 package com.rafaelds.swapi.data.model.planets
 
+import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
 import com.rafaelds.swapi.data.model.DtoToModelMapper
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -12,7 +13,7 @@ class PlanetDtoToPlanetListMapper @Inject constructor() : DtoToModelMapper<Plane
             Planet(
                 id = regexMatch?.destructured?.component1()?.toInt() ?: -1,
                 name = planet.name,
-                appUri = planet.url.replace("http", "swapi"),
+                appUri = planet.url.toSwapiSchema(),
                 rotationPeriod = planet.rotation_period,
                 orbitalPeriod = planet.orbital_period,
                 diameter = planet.diameter,

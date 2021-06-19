@@ -11,5 +11,5 @@ data class Person(
     val eyeColor: String,
     val hairColor: String,
     val birthYear: String,
-    val home: String
+    val homeData: HomeData? = null
 )

@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.data.model.people
 
+import com.rafaelds.swapi.data.TestData.PERSON
+import com.rafaelds.swapi.data.TestData.PERSON_DTO
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -8,12 +10,10 @@ class PeopleDtoToPersonListMapperTest {
 
     @Test
     fun `should convert correctly dto with app uri`() {
-        val peopleDto = PeopleDTO(1, "next", listOf(PERSON_DTO), "prev")
-        assertEquals(listOf(PERSON), peopleDtoToPersonListMapper.convert(peopleDto))
+        val url = "http://people/42"
+        val peopleDto = PeopleDTO(1, "next", listOf(PERSON_DTO.copy(url = url)), "prev")
+        val expectedUrl = "swapi://people/42"
+        assertEquals(listOf(PERSON.copy(appUri = expectedUrl)), peopleDtoToPersonListMapper.convert(peopleDto))
     }
 
-    companion object {
-        private val PERSON_DTO = PersonDTO("Luke", "male", "http://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-        private val PERSON = Person(42, "Luke", "male", "swapi://people/42", "120", "60", "fair", "blue", "blond", "1990", "homeworld")
-    }
 }
