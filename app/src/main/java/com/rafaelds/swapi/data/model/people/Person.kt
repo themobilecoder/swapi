@@ -1,5 +1,10 @@
 package com.rafaelds.swapi.data.model.people
 
+import com.rafaelds.swapi.data.model.films.FilmData
+import com.rafaelds.swapi.data.model.species.SpecieData
+import com.rafaelds.swapi.data.model.starships.StarshipData
+import com.rafaelds.swapi.data.model.vehicles.VehicleData
+
 data class Person(
     val id: Int,
     val name: String,
@@ -11,5 +16,9 @@ data class Person(
     val eyeColor: String,
     val hairColor: String,
     val birthYear: String,
-    val homeData: HomeData? = null
+    val homeData: HomeData? = null,
+    val vehicles: List<VehicleData> = listOf(),
+    val starships: List<StarshipData> = listOf(),
+    val species: List<SpecieData> = listOf(),
+    val films: List<FilmData> = listOf(),
 )

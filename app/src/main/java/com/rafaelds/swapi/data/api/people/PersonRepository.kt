@@ -22,7 +22,7 @@ class PersonRepository @Inject constructor(
         val url = "$peopleRepositoryUrl$id"
         val personDTO = personRemoteService.fetchData(url)
         val homeUrl = personDTO.homeworld
-        val planetDTO = planetRemoteService.fetchData(homeUrl)
+        val planetDTO = homeUrl?.let { planetRemoteService.fetchData(homeUrl) }
         return Person(
             id = id,
             name = personDTO.name,
@@ -34,7 +34,11 @@ class PersonRepository @Inject constructor(
             hairColor = personDTO.hair_color,
             birthYear = personDTO.birth_year,
             gender = personDTO.gender,
-            homeData = HomeData(name = planetDTO.name, url = planetDTO.url.toSwapiSchema())
+            homeData = planetDTO?.let {HomeData(name = planetDTO.name, url = planetDTO.url.toSwapiSchema()) },
+            films = listOf(),
+            species = listOf(),
+            starships = listOf(),
+            vehicles = listOf()
         )
     }
 }
