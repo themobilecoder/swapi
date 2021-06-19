@@ -3,15 +3,15 @@ package com.rafaelds.swapi.controllers
 import android.content.Context
 import com.rafaelds.swapi.R
 
-class StarshipsController(context: Context) : BaseController(context) {
+class VehiclesController(context: Context) : BaseController(context) {
     override fun handleUrl(url: String): String? {
         return when {
-            url.matches("/api/vehicles/$".toRegex()) -> {
+            url.matches("/api/starships/$".toRegex()) -> {
                 Thread.sleep(1000)
-                readFromJson(R.raw.vehicles)
+                readFromJson(R.raw.starships)
             }
-            url.matches("/api/vehicles/\\d+.*".toRegex()) -> {
-                readFromJson(R.raw.vehicle)
+            url.matches("/api/starships/\\d+.*".toRegex()) -> {
+                readFromJson(R.raw.starship)
             }
             else -> {
                 null

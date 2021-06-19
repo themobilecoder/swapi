@@ -12,6 +12,7 @@ class MasterController(context: Context) : BaseController(context) {
         controllers.add(FilmsController(context))
         controllers.add(SpeciesController(context))
         controllers.add(StarshipsController(context))
+        controllers.add(VehiclesController(context))
     }
 
     override fun handleUrl(url: String): String? {

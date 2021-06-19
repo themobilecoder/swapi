@@ -70,7 +70,7 @@ object TestData {
 
     val FILM_DTO = FilmDTO(
         title = "star wars",
-        episode_id = "2",
+        episode_id = 2,
         director = "director",
         producer = "producer",
         release_date = "2010",
