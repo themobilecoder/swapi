@@ -2,7 +2,7 @@ package com.rafaelds.swapi.data.api.people
 
 import com.rafaelds.swapi.data.api.ApiUtils.toSwapiSchema
 import com.rafaelds.swapi.data.api.planets.PlanetRemoteService
-import com.rafaelds.swapi.data.model.people.HomeData
+import com.rafaelds.swapi.data.model.planets.PlanetData
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.data.network.NetworkConfig
 import javax.inject.Inject
@@ -34,7 +34,7 @@ class PersonRepository @Inject constructor(
             hairColor = personDTO.hair_color,
             birthYear = personDTO.birth_year,
             gender = personDTO.gender,
-            homeData = planetDTO?.let {HomeData(name = planetDTO.name, url = planetDTO.url.toSwapiSchema()) },
+            planetData = planetDTO?.let { PlanetData(name = planetDTO.name, url = planetDTO.url.toSwapiSchema()) },
             films = listOf(),
             species = listOf(),
             starships = listOf(),

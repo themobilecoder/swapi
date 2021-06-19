@@ -1,8 +1,8 @@
 package com.rafaelds.swapi.data.model.planets
 
-import kotlinx.serialization.Serializable
+import com.rafaelds.swapi.data.model.films.FilmData
+import com.rafaelds.swapi.data.model.people.PersonData
 
-@Serializable
 data class Planet(
     val id: Int,
     val name: String,
@@ -13,7 +13,7 @@ data class Planet(
     val terrain: String,
     val surfaceWater: String,
     val population: String,
-    val residents: List<String>,
-    val films: List<String>,
+    val residents: List<PersonData> = listOf(),
+    val films: List<FilmData> = listOf(),
     val appUri: String
 )

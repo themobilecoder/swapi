@@ -6,11 +6,11 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.rafaelds.swapi.CoroutineTest
+import com.rafaelds.swapi.data.TestData.PLANET
+import com.rafaelds.swapi.data.TestData.PLANET_DTO
 import com.rafaelds.swapi.data.model.planets.Planet
-import com.rafaelds.swapi.data.model.planets.PlanetDTO
 import com.rafaelds.swapi.data.model.planets.PlanetsDTO
 import com.rafaelds.swapi.data.model.planets.PlanetsDtoToPlanetListMapper
-import com.rafaelds.swapi.data.network.NetworkConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -64,37 +64,6 @@ class PlanetsPagingSourceTest : CoroutineTest() {
 
             assertEquals(PagingSource.LoadResult.Error(exception), actual)
         }
-    }
-
-    companion object {
-        private val PLANET = Planet(
-            id = 42,
-            name = "tatooine",
-            rotationPeriod = "1",
-            orbitalPeriod = "2",
-            diameter = "3",
-            gravity = "4",
-            terrain = "terrain",
-            surfaceWater = "5",
-            population = "100",
-            residents = listOf("resident"),
-            films = listOf("film"),
-            appUri = "swapi://planets/42"
-        )
-
-        private val PLANET_DTO = PlanetDTO(
-            name = "tatooine",
-            rotation_period = "1",
-            orbital_period = "2",
-            diameter = "3",
-            gravity = "4",
-            terrain = "terrain",
-            surface_water = "5",
-            population = "100",
-            residents = listOf("resident"),
-            films = listOf("film"),
-            url = "http://planets/42"
-        )
     }
 
 }

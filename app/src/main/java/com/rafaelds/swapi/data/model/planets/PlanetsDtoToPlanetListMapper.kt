@@ -20,8 +20,8 @@ class PlanetsDtoToPlanetListMapper @Inject constructor() : DtoToModelMapper<Plan
                 terrain = planet.terrain,
                 surfaceWater = planet.surface_water,
                 population = planet.population,
-                residents = planet.residents,
-                films = planet.films,
+                residents = listOf(),
+                films = listOf(),
                 gravity = planet.gravity
             )
         }

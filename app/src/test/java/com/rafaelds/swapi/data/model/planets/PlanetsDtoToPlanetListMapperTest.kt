@@ -1,5 +1,7 @@
 package com.rafaelds.swapi.data.model.planets
 
+import com.rafaelds.swapi.data.TestData.PLANET
+import com.rafaelds.swapi.data.TestData.PLANET_DTO
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -18,34 +20,4 @@ class PlanetsDtoToPlanetListMapperTest {
         assertEquals(listOf(PLANET), planetsDtoToPlanetListMapper.convert(planetsDTO))
     }
 
-    companion object {
-        private val PLANET = Planet(
-            id = 42,
-            name = "tatooine",
-            rotationPeriod = "1",
-            orbitalPeriod = "2",
-            diameter = "3",
-            gravity = "4",
-            terrain = "terrain",
-            surfaceWater = "5",
-            population = "100",
-            residents = listOf("resident"),
-            films = listOf("film"),
-            appUri = "swapi://planets/42"
-        )
-
-        private val PLANET_DTO = PlanetDTO(
-            name = "tatooine",
-            rotation_period = "1",
-            orbital_period = "2",
-            diameter = "3",
-            gravity = "4",
-            terrain = "terrain",
-            surface_water = "5",
-            population = "100",
-            residents = listOf("resident"),
-            films = listOf("film"),
-            url = "http://planets/42"
-        )
-    }
 }

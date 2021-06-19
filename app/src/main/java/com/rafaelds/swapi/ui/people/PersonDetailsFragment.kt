@@ -53,7 +53,7 @@ class PersonDetailsFragment : Fragment() {
                         binding.eyeColor.text = person.eyeColor.safeCapitalize()
                         binding.hairColor.text = person.hairColor.safeCapitalize()
                         binding.skinColor.text = person.skinColor.safeCapitalize()
-                        val homeData = person.homeData
+                        val homeData = person.planetData
                         homeData?.let { _ ->
                             binding.homeworld.text = homeData.name
                             binding.homeworld.setOnClickListener {

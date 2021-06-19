@@ -29,8 +29,8 @@ class PlanetRepository @Inject constructor(
             terrain = planetDTO.terrain,
             surfaceWater = planetDTO.surface_water,
             population = planetDTO.population,
-            residents = planetDTO.residents,
-            films = planetDTO.films,
+            residents = listOf(),
+            films = listOf(),
             gravity = planetDTO.gravity
         )
 
