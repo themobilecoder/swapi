@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:text="@string/starship_class"
+                        android:text="@string/class_label"
                         android:textAllCaps="true"
                         android:textSize="14sp"
                         android:textStyle="bold" />

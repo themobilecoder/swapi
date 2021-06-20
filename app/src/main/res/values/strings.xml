@@ -41,7 +41,7 @@
     <string name="hair_colors">Hair Colors</string>
     <string name="home_world">Home world</string>
     <string name="known_people">Known People</string>
-    <string name="starship_class">Class</string>
+    <string name="class_label">Class</string>
     <string name="model">Model</string>
     <string name="manufacturer">Manufacturer</string>
     <string name="length">Length</string>
