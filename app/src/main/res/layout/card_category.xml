@@ -21,7 +21,6 @@
         style="@style/TextAppearance.MaterialComponents.Headline3"
         android:textSize="18sp"
         android:textAllCaps="true"
-        android:textStyle="bold"
         tools:text="Vehicles" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

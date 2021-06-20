@@ -28,7 +28,7 @@ object ApiStringUtils {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         val yearFormat = SimpleDateFormat("MMMM dd, yyyy")
         return try {
-            yearFormat.format(simpleDateFormat.parse(this))
+            yearFormat.format(simpleDateFormat.parse(this)!!)
         } catch (e: Exception) {
             this
         }

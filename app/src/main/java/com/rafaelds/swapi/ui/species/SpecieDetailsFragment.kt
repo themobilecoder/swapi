@@ -3,6 +3,7 @@ package com.rafaelds.swapi.ui.species
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -81,8 +82,8 @@ class SpecieDetailsFragment : Fragment() {
             when (state.state) {
                 ViewState.State.SUCCESS -> {
                     container.visibility = View.VISIBLE
-                    offline.visibility = View.GONE
-                    loadingSpinner.visibility = View.GONE
+                    offline.visibility = GONE
+                    loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
                     state.data?.let { specie ->
                         name.text = specie.name
@@ -94,21 +95,25 @@ class SpecieDetailsFragment : Fragment() {
                         eyeColors.text = specie.eyeColors
                         skinColors.text = specie.skinColors
                         hairColors.text = specie.hairColors
-                        specie.homeworld?.let { home ->
-                            homeworld.text = home.name
-                            homeworld.setOnClickListener {
-                                startActivityWithLink(home.url)
+                        if (specie.homeworld != null) {
+                            specie.homeworld.let { home ->
+                                homeworld.text = home.name
+                                homeworld.setOnClickListener {
+                                    startActivityWithLink(home.url)
+                                }
                             }
+                        } else {
+                            homeSection.visibility = GONE
                         }
 
                         if (specie.people.isEmpty()) {
-                            charactersSection.visibility = View.GONE
+                            charactersSection.visibility = GONE
                         } else {
                             charactersSection.visibility = View.VISIBLE
                             charactersAdapter.submitList(specie.people)
                         }
                         if (specie.films.isEmpty()) {
-                            filmsSection.visibility = View.GONE
+                            filmsSection.visibility = GONE
                         } else {
                             filmsSection.visibility = View.VISIBLE
                             filmsAdapter.submitList(specie.films)
@@ -116,18 +121,18 @@ class SpecieDetailsFragment : Fragment() {
                     }
                 }
                 ViewState.State.LOADING -> {
-                    offline.visibility = View.GONE
+                    offline.visibility = GONE
                     loadingSpinner.visibility = View.VISIBLE
                 }
                 ViewState.State.ERROR -> {
-                    container.visibility = View.GONE
+                    container.visibility = GONE
                     offline.visibility = View.VISIBLE
-                    loadingSpinner.visibility = View.GONE
+                    loadingSpinner.visibility = GONE
                     refreshLayout.isRefreshing = false
                 }
                 ViewState.State.IDLE -> {
                     refreshLayout.isRefreshing = false
-                    container.visibility = View.GONE
+                    container.visibility = GONE
                 }
             }
         }
