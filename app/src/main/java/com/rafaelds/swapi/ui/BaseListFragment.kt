@@ -1,6 +1,7 @@
 package com.rafaelds.swapi.ui
 
 import android.os.Bundle
+import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -11,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.rafaelds.swapi.databinding.FragmentListBinding
 import com.rafaelds.swapi.ui.views.BaseListViewModel
 
@@ -36,6 +38,14 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        exitTransition = Fade()
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -59,7 +69,6 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
         }
         listAdapter.addLoadStateListener {
             if (it.refresh is LoadState.Loading) {
-                content.visibility = GONE
                 loadingSpinner.visibility = View.VISIBLE
             } else {
                 loadingSpinner.visibility = GONE

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.rafaelds.swapi.R
 import com.rafaelds.swapi.databinding.FragmentCategoryBinding
 import com.rafaelds.swapi.ui.utils.NavigationUtils.navigateSafe
@@ -20,8 +21,13 @@ class CategoryFragment : Fragment() {
     private var _binding: FragmentCategoryBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X,  true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
