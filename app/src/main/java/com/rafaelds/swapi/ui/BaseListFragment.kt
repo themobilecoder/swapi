@@ -59,8 +59,10 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
             } else {
                 loadingSpinner.visibility = View.GONE
                 if (it.refresh is LoadState.Error) {
+                    binding.recyclerView.visibility = View.GONE
                     errorView.visibility = View.VISIBLE
                 } else {
+                    binding.recyclerView.visibility = View.VISIBLE
                     errorView.visibility = View.GONE
                 }
             }
