@@ -39,17 +39,18 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="32dp"
-                >
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="32dp">
 
                 <LinearLayout
                     android:id="@+id/profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:orientation="vertical">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/name"
@@ -71,10 +72,10 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="?colorPrimary"/>
+                        android:layout_marginTop="8dp"
+                        android:background="?colorPrimary" />
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Caption"
@@ -203,28 +204,28 @@
                     <TextView
                         android:id="@+id/homeworld"
                         style="@style/TextAppearance.MaterialComponents.Caption"
-                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
                         android:paddingTop="24dp"
                         android:paddingBottom="24dp"
                         android:text="@string/classification"
-                        tools:text="Tatooine"
                         android:textAllCaps="true"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Tatooine" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/species_section"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@id/profile"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile">
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Headline3"
@@ -236,28 +237,28 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="?colorPrimary"/>
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="?colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/species_list"
-                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/films_section"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@id/species_section"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/species_section">
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Headline3"
@@ -269,28 +270,28 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="?colorPrimary"/>
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="?colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/film_list"
-                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/starships_section"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@id/films_section"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/films_section">
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Headline3"
@@ -302,28 +303,28 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="?colorPrimary"/>
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="?colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/starships_list"
-                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/vehicless_section"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@id/starships_section"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/starships_section">
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Headline3"
@@ -335,17 +336,17 @@
                         android:textStyle="bold" />
 
                     <View
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="12dp"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="?colorPrimary"/>
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="?colorPrimary" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/vehicles_list"
-                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

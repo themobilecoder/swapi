@@ -2,6 +2,7 @@ package com.rafaelds.swapi.ui.species
 
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.R
 import com.rafaelds.swapi.data.model.species.Specie
 import com.rafaelds.swapi.ui.BaseListFragment
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
@@ -19,4 +20,6 @@ class SpecieListFragment : BaseListFragment<Specie, SpecieListViewModel, SpecieL
         }
     }
 
+    override val toolbarTitle: String
+        get() = resources.getString(R.string.species)
 }

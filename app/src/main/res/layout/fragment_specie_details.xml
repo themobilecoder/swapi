@@ -40,7 +40,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="32dp">
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="32dp">
 
                 <LinearLayout
                     android:id="@+id/profile"
@@ -239,16 +241,16 @@
                     <TextView
                         android:id="@+id/homeworld"
                         style="@style/TextAppearance.MaterialComponents.Caption"
-                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
                         android:paddingTop="24dp"
                         android:paddingBottom="24dp"
                         android:text="@string/classification"
-                        tools:text="Tatooine"
                         android:textAllCaps="true"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="Tatooine" />
 
 
                 </LinearLayout>
@@ -318,7 +320,6 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false" />
                 </LinearLayout>
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

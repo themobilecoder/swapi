@@ -40,7 +40,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="32dp">
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="32dp">
 
                 <LinearLayout
                     android:id="@+id/profile"
@@ -62,14 +64,14 @@
 
                     <TextView
                         android:id="@+id/openingCrawl"
+                        style="@style/TextAppearance.AppCompat.Caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
                         android:gravity="center"
-                        style="@style/TextAppearance.AppCompat.Caption"
-                        android:textStyle="italic"
                         android:textSize="14sp"
+                        android:textStyle="italic"
                         tools:text="opening crawl random text" />
 
                     <TextView

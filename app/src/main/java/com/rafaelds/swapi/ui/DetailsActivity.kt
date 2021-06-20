@@ -18,5 +18,6 @@ class DetailsActivity : BaseActivity() {
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 }

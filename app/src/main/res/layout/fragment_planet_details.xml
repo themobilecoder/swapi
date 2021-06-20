@@ -39,7 +39,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="32dp">
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingBottom="32dp">
 
                 <LinearLayout
                     android:id="@+id/profile"
@@ -53,10 +55,10 @@
                     <TextView
                         android:id="@+id/name"
                         style="@style/TextAppearance.MaterialComponents.Headline4"
-                        android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         tools:text="Tatooine" />
 
                     <TextView

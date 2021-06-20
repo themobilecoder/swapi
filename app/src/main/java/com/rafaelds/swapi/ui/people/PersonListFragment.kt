@@ -2,6 +2,7 @@ package com.rafaelds.swapi.ui.people
 
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.R
 import com.rafaelds.swapi.data.model.people.Person
 import com.rafaelds.swapi.ui.BaseListFragment
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
@@ -18,4 +19,8 @@ class PersonListFragment : BaseListFragment<Person, PersonListViewModel, PersonL
             startActivityWithLink(uri)
         }
     }
+
+    override val toolbarTitle: String
+        get() = resources.getString(R.string.characters)
+
 }

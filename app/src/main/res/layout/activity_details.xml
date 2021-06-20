@@ -10,8 +10,6 @@
         android:id="@+id/toolbar_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Swapi.Toolbar"
-        app:title="Details"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView

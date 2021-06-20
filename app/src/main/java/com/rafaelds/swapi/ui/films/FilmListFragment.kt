@@ -2,6 +2,7 @@ package com.rafaelds.swapi.ui.films
 
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.R
 import com.rafaelds.swapi.data.model.films.Film
 import com.rafaelds.swapi.ui.BaseListFragment
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
@@ -19,4 +20,6 @@ class FilmListFragment : BaseListFragment<Film, FilmListViewModel, FilmListAdapt
         }
     }
 
+    override val toolbarTitle: String
+        get() = resources.getString(R.string.films)
 }

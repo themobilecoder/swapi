@@ -19,6 +19,7 @@ class MainActivity : BaseActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_main)
         setSupportActionBar(toolbar)
         setupToolbarForNavigation(appBarConfiguration)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     private fun setupToolbarForNavigation(appBarConfiguration: AppBarConfiguration) {

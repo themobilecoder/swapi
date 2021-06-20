@@ -2,6 +2,7 @@ package com.rafaelds.swapi.ui.starships
 
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.R
 import com.rafaelds.swapi.data.model.starships.Starship
 import com.rafaelds.swapi.ui.BaseListFragment
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
@@ -18,4 +19,7 @@ class StarshipListFragment : BaseListFragment<Starship, StarshipListViewModel, S
             startActivityWithLink(starshipUri)
         }
     }
+
+    override val toolbarTitle: String
+        get() = resources.getString(R.string.starships)
 }

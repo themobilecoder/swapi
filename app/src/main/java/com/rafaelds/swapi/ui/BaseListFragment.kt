@@ -3,12 +3,12 @@ package com.rafaelds.swapi.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.databinding.FragmentListBinding
@@ -22,9 +22,11 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
 
 
     private var _binding: FragmentListBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     abstract fun createAdapter() : Adapter
+
+    abstract val toolbarTitle : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +47,9 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
         val refreshLayout = binding.refreshLayout
         val loadingSpinner = binding.loadingSpinner
         val recyclerView = binding.recyclerView
+        val content = binding.content
         val errorView = binding.offline
+        binding.title.text = toolbarTitle
 
         setupAdapter(recyclerView)
 
@@ -55,15 +59,16 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
         }
         listAdapter.addLoadStateListener {
             if (it.refresh is LoadState.Loading) {
+                content.visibility = GONE
                 loadingSpinner.visibility = View.VISIBLE
             } else {
-                loadingSpinner.visibility = View.GONE
+                loadingSpinner.visibility = GONE
                 if (it.refresh is LoadState.Error) {
-                    binding.recyclerView.visibility = View.GONE
+                    content.visibility = GONE
                     errorView.visibility = View.VISIBLE
                 } else {
-                    binding.recyclerView.visibility = View.VISIBLE
-                    errorView.visibility = View.GONE
+                    content.visibility = View.VISIBLE
+                    errorView.visibility = GONE
                 }
             }
         }
@@ -85,7 +90,6 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 }

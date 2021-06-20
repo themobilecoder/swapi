@@ -2,6 +2,7 @@ package com.rafaelds.swapi.ui.planets
 
 import androidx.fragment.app.viewModels
 import androidx.paging.ExperimentalPagingApi
+import com.rafaelds.swapi.R
 import com.rafaelds.swapi.data.model.planets.Planet
 import com.rafaelds.swapi.ui.BaseListFragment
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
@@ -18,5 +19,8 @@ class PlanetListFragment : BaseListFragment<Planet, PlanetListViewModel, PlanetL
             startActivityWithLink(planetUri)
         }
     }
+
+    override val toolbarTitle: String
+        get() = resources.getString(R.string.planets)
 
 }
