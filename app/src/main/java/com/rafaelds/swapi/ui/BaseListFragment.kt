@@ -87,7 +87,6 @@ abstract class BaseListFragment <T : Any, VM : BaseListViewModel<T>, Adapter: Ba
             adapter = listAdapter.withLoadStateFooter(LoadAdapter {
                 listAdapter.retry()
             })
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = DefaultItemAnimator()
         }
