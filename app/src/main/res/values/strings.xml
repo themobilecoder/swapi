@@ -31,4 +31,14 @@
     <string name="producer">Producer</string>
     <string name="release_date">Release Date</string>
     <string name="about">About</string>
+    <string name="classification">Classification</string>
+    <string name="designation">Designation</string>
+    <string name="language">Language</string>
+    <string name="eye_colors">Eye Colors</string>
+    <string name="average_height">Average Height</string>
+    <string name="average_lifespan">Average Lifespan</string>
+    <string name="skin_colors">Skin Colors</string>
+    <string name="hair_colors">Hair Colors</string>
+    <string name="home_world">Home world</string>
+    <string name="known_people">Known People</string>
 </resources>
