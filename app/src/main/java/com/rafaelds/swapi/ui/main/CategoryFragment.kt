@@ -56,7 +56,7 @@ class CategoryFragment : Fragment() {
                 CategoryFragmentDirections.actionMainDestToFilmListDest()
             )
         },
-        Category(resources.getString(R.string.people)) {
+        Category(resources.getString(R.string.characters)) {
             findNavController().navigateSafe(
                 CategoryFragmentDirections.actionMainDestToPersonListFragment()
             )
