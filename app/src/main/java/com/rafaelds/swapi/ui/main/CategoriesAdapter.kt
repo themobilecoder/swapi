@@ -1,26 +1,44 @@
 package com.rafaelds.swapi.ui.main
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import com.rafaelds.swapi.R
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.rafaelds.swapi.databinding.CardCategoryBinding
 
-class CategoriesAdapter(context: Context, categories: Array<Category>) :
-    ArrayAdapter<Category>(context, R.layout.card_category, categories) {
+class CategoriesAdapter() :
+    ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(ASYNC_DIFF) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val binding = if (convertView == null) {
-            CardCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
-        } else {
-            CardCategoryBinding.bind(convertView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
+        val binding = CardCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoriesViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
+        val category = getItem(position)
+        holder.bind(category)
+    }
+
+    inner class CategoriesViewHolder(private val binding: CardCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(category: Category): View {
+            binding.cardViewCategory.setOnClickListener { category.onClick.invoke() }
+            binding.cardViewTitle.text = category.title
+            return binding.root
         }
-        val item = getItem(position)
-        binding.cardViewCategory.setOnClickListener { item?.onClick?.invoke() }
-        binding.cardViewTitle.text = item?.title
-        return binding.root
+    }
+
+    companion object {
+        private val ASYNC_DIFF = object : DiffUtil.ItemCallback<Category>() {
+            override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 
 }
