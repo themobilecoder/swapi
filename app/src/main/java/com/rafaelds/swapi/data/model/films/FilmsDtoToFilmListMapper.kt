@@ -16,13 +16,14 @@ class FilmsDtoToFilmListMapper @Inject constructor() : DtoToModelMapper<FilmsDTO
                 appUri = film.url.toSwapiSchema(),
                 director = film.director,
                 producer = film.producer,
+                openingCrawl = film.opening_crawl,
                 episode = film.episode_id.toString(),
                 releaseDate = film.release_date,
                 species = listOf(),
                 starships = listOf(),
                 vehicles = listOf(),
                 characters = listOf(),
-                planets = listOf()
+                planets = listOf(),
             )
         }
     }

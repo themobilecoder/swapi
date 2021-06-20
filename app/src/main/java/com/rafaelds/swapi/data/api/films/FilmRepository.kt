@@ -51,6 +51,7 @@ class FilmRepository @Inject constructor(
                     vehicles = vehiclesDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) },
                     planets = planetsDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) },
                     characters = peopleDeferred.await().map { LinksData(it.name, it.url.toSwapiSchema()) },
+                    openingCrawl = filmDTO.opening_crawl,
                     releaseDate = filmDTO.release_date.toReadableDate(),
                     producer = filmDTO.producer,
                     director = filmDTO.director

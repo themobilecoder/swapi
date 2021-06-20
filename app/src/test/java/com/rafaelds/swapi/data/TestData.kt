@@ -79,12 +79,14 @@ object TestData {
         vehicles = listOf(),
         characters = listOf(),
         planets = listOf(),
-        url = "http://films/42"
+        url = "http://films/42",
+        opening_crawl = "crawl"
     )
 
     val FILM = Film(
         title = "star wars",
         episode = "2",
+        openingCrawl = "crawl",
         director = "director",
         producer = "producer",
         releaseDate = "2010",

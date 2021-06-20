@@ -98,6 +98,7 @@ class FilmDetailsFragment : Fragment() {
                         director.text = film.director
                         producer.text = film.producer
                         releaseDate.text = film.releaseDate
+                        openingCrawl.text = film.openingCrawl
 
                         if (film.characters.isEmpty()) {
                             charactersSection.visibility = View.GONE

@@ -56,7 +56,21 @@
                         style="@style/TextAppearance.MaterialComponents.Headline4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         tools:text="Star Wars" />
+
+                    <TextView
+                        android:id="@+id/openingCrawl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        style="@style/TextAppearance.AppCompat.Caption"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        tools:text="opening crawl random text" />
 
                     <TextView
                         style="@style/TextAppearance.MaterialComponents.Headline3"

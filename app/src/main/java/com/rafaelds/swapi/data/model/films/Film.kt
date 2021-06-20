@@ -10,6 +10,7 @@ data class Film(
     val director: String,
     val producer: String,
     val releaseDate: String,
+    val openingCrawl: String,
     val species: List<LinksData>,
     val starships: List<LinksData>,
     val vehicles: List<LinksData>,
