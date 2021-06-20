@@ -15,7 +15,6 @@ import com.rafaelds.swapi.data.model.ViewState
 import com.rafaelds.swapi.data.model.species.Specie
 import com.rafaelds.swapi.databinding.FragmentSpecieDetailsBinding
 import com.rafaelds.swapi.ui.LinksAdapter
-import com.rafaelds.swapi.ui.films.FilmDetailsFragmentArgs
 import com.rafaelds.swapi.ui.utils.ExtensionUtil.startActivityWithLink
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +25,7 @@ class SpecieDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val specieDetailsViewModel: SpecieDetailsViewModel by viewModels()
-    private val args: FilmDetailsFragmentArgs by navArgs()
+    private val args: SpecieDetailsFragmentArgs by navArgs()
 
     private lateinit var charactersAdapter: LinksAdapter
     private lateinit var filmsAdapter: LinksAdapter

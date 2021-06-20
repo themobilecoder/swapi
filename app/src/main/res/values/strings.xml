@@ -41,4 +41,17 @@
     <string name="hair_colors">Hair Colors</string>
     <string name="home_world">Home world</string>
     <string name="known_people">Known People</string>
+    <string name="starship_class">Class</string>
+    <string name="model">Model</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="length">Length</string>
+    <string name="cost">Cost</string>
+    <string name="crew">Crew</string>
+    <string name="passengers">Passengers</string>
+    <string name="max_atmosphering_speed">Max Atmosphering Speed</string>
+    <string name="hyperdrive_rating">Hyperdrive Rating</string>
+    <string name="mglt">MGLT</string>
+    <string name="cargp_capacity">Cargp Capacity</string>
+    <string name="consumables">Consumables</string>
+    <string name="pilots">Pilots</string>
 </resources>
